@@ -1,12 +1,17 @@
 Package: interpretproteinidentification
 Type: Package
-Title: Visually interprets protein identification
+Title: Visually Interprets Protein Identification
 Version: 0.1.0
 Author: person("Kai Ren", "Chen", email = "kairen.chen@mail.utoronto.ca",
                   role = c("aut", "cre"))
 Description: Visually interprets protein identification
     by connected them to assocaited biological processes 
     and diseases based on mass spectrometry peptide identification
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    UniprotR
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: R (>= 2.1.0)

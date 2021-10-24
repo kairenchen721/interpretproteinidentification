@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -54,26 +53,25 @@ You can also embed plots, for example:
 
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.
-=======
-# interpretproteinidentification
+
 ## Description
 
 ## Installation
 
-To download the package:
-         require("devtools")
-         devtools::install_github("<GitHubUserName>/<PackageName>", build_vignettes = TRUE)
-         library("<PackageName>")
-  
-To run the shinyApp:
-         Under construction
+To download the package: require(“devtools”)
+devtools::install_github(“<GitHubUserName>/<PackageName>”,
+build_vignettes = TRUE) library(“<PackageName>”)
+
+To run the shinyApp: Under construction
 
 ## Overview
-  
+
 ## Contributions
-  
+
 ## References
-  
+
 ## Acknowledgements
-This package was developed as part of an assessment for 2021 BCB410H: Applied Bioinfor- matics, University of Toronto, Toronto, CANADA.
->>>>>>> cd12db0cdb8746755608f343e2322972537cd38e
+
+This package was developed as part of an assessment for 2021 BCB410H:
+Applied Bioinfor- matics, University of Toronto, Toronto, CANADA.
+\>\>\>\>\>\>\> cd12db0cdb8746755608f343e2322972537cd38e
