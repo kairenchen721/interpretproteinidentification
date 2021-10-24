@@ -4,9 +4,8 @@ Title: Visually Interprets Protein Identification
 Version: 0.1.0
 Author: person("Kai Ren", "Chen", email = "kairen.chen@mail.utoronto.ca",
                   role = c("aut", "cre"))
-Description: Visually interprets protein identification
-    by connected them to assocaited biological processes 
-    and diseases based on mass spectrometry peptide identification
+Maintainer: Kai Ren Chen <kairen.chen@mail.utoronto.ca>
+Description: This package visually interprets protein identification that is based on mass spectrometry peptide identification by connected them to assocaited biological processes and diseases. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
