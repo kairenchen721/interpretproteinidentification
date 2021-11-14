@@ -20,7 +20,7 @@ require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification")
 #> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
 #> 
-#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/RtmprTvZje/remotes10dd6441af265/kairenchen721-interpretproteinidentification-8fc4445/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/RtmprTvZje/remotes10dd6441af265/kairenchen721-interpretproteinidentification-8fc4445/DESCRIPTION’
+#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmpr2yA2b/remotes1109e68dd702d/kairenchen721-interpretproteinidentification-05794d9/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmpr2yA2b/remotes1109e68dd702d/kairenchen721-interpretproteinidentification-05794d9/DESCRIPTION’
 #>   ─  preparing ‘interpretproteinidentification’:
 #>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
 #>   ─  checking for LF line-endings in source and make files and shell scripts
@@ -29,7 +29,7 @@ devtools::install_github("kairenchen721/interpretproteinidentification")
 #>      
 #> 
 #> Warning in i.p(...): installation of package '/var/folders/tf/
-#> d8qr9g7s2036pdql45crxh440000gp/T//RtmprTvZje/file10dd6451fe7d1/
+#> d8qr9g7s2036pdql45crxh440000gp/T//Rtmpr2yA2b/file1109e21efd024/
 #> interpretproteinidentification_0.1.0.tar.gz' had non-zero exit status
 ```
 
@@ -50,7 +50,7 @@ require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification", build_vignettes = TRUE)
 #> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
 #> 
-#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/RtmprTvZje/remotes10dd661d2778/kairenchen721-interpretproteinidentification-8fc4445/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/RtmprTvZje/remotes10dd661d2778/kairenchen721-interpretproteinidentification-8fc4445/DESCRIPTION’
+#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmpr2yA2b/remotes1109ed0fa136/kairenchen721-interpretproteinidentification-05794d9/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmpr2yA2b/remotes1109ed0fa136/kairenchen721-interpretproteinidentification-05794d9/DESCRIPTION’
 #>   ─  preparing ‘interpretproteinidentification’:
 #>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
 #>   ─  checking for LF line-endings in source and make files and shell scripts
@@ -59,7 +59,7 @@ devtools::install_github("kairenchen721/interpretproteinidentification", build_v
 #>      
 #> 
 #> Warning in i.p(...): installation of package '/var/folders/tf/
-#> d8qr9g7s2036pdql45crxh440000gp/T//RtmprTvZje/file10dd6640a3a6a/
+#> d8qr9g7s2036pdql45crxh440000gp/T//Rtmpr2yA2b/file1109e7d20e6ec/
 #> interpretproteinidentification_0.1.0.tar.gz' had non-zero exit status
 library("interpretproteinidentification")
 ```
@@ -83,7 +83,8 @@ read idXML files, and uses `igraph` R package to draw the graph,
 simplify the graph, and decompose the graph into components.
 displayComponents also uses the `igraph` R package to draw a component.
 selectProtein uses the `igraph` R package to search for relevant
-vertices (those connected to the selected protein/peptide)
+vertices (those connected to the selected protein/peptide), induce a
+sub-graph, then plot it
 
 ## References
 
