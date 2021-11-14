@@ -71,6 +71,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
               peptideProteinEdgeMatrix[ordinalRowPopulated, 1] <- peptideSequence
               peptideProteinEdgeMatrix[ordinalRowPopulated, 2] <- proteinAccession
               ordinalRowPopulated <- ordinalRowPopulated + 1
+              # TODO I can pre allocate, then access index to assign it ####
               peptideProteinEdgeVector <- c(peptideProteinEdgeVector, peptideSequence, proteinAccession)
               
           }
@@ -83,25 +84,24 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # wait what?
   # ok, despite what the documentation says, the edges vector cannot be a character vector
   # so I gave them internal vertex ids, by using factor and then as numeric
-  peptideProteinBipartiteGraph <- igraph::make_bipartite_graph(rep(0:1, length = 100),
-                                                               as.numeric(factor(peptideProteinEdgeVector)))
+  # peptideProteinBipartiteGraph <- igraph::make_bipartite_graph(rep(0:1, length = 100), as.numeric(factor(peptideProteinEdgeVector)))
   
-  igraph::plot.igraph(x = peptideProteinBipartiteGraph, lty = 1, arrow.mode = 0)
+  # igraph::plot.igraph(x = peptideProteinBipartiteGraph, lty = 1, arrow.mode = 0)
   
-  a <- igraph::make_graph(peptideProteinEdgeVector, directed = FALSE)
+  peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector, directed = FALSE)
   
-  a <- igraph::simplify(a)
+  peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
-  igraph::plot.igraph(a, 
+  igraph::plot.igraph(peptideProteinBipartiteGraph, 
                       vertex.label.cex = 0.05,
                       vertex.shape = 'square',
                       vertex.frame.color = NA,
                       vertex.size = 5,
                       vertex.color = 'SkyBlue2')
   
-
+  peptideProteinBipartiteGraphComponents <- igraph::decompose(peptideProteinBipartiteGraph, mode = c("weak"))
   
-  return("3")
+  return(peptideProteinBipartiteGraphComponents)
 }
 
 
