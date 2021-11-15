@@ -1,13 +1,19 @@
-# pass a list into from generate bipartite graph
-# then select one index to show, should be graph object?
-# 
-# This function expects an input of from generateBipartiteGraph
-# so the user should do something like
-# graph <- generateBipartiteGraph(file1, file2)
-# displayComponent(graph, componentnumber = 1)
-# 
-# 
-
+#' select an component to display
+#'
+#' \code{displayComponent} given an index, display that component in the list of
+#' component
+#'
+#' It take the return of \code{generateBipartiteGraph} and an integer, and uses
+#' indexing to select the graph object to display
+#'
+#' @param proteinPeptideGraphComponents the return from \code{generateBipartiteGraph}
+#' @param displayingComponent an integer representing the index of the component
+#'   that the user want to display
+#' @return it returns the component that is displayed
+#'
+#' @examples
+#' componentList <- generateBipartiteGraph("~/before.idXML", "~/after.idXML")
+#' displayComponent(componentList, displayingComponent = 1)
 displayComponent <- function(proteinPeptideGraphComponents, 
                              displayingComponent) {
     componentInQuestion <- proteinPeptideGraphComponents[[displayingComponent]]
@@ -17,5 +23,7 @@ displayComponent <- function(proteinPeptideGraphComponents,
                         vertex.frame.color = NA,
                         vertex.size = 20,
                         vertex.color = 'SkyBlue2')
+    
+    # add check for user input that exceed the indices of the given list
     return(componentInQuestion)
 }
