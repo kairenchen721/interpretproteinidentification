@@ -26,8 +26,3 @@ refers to, then find the neighbours of that vertex, and finally induce a
 sub-graph that include them. Feature yet to add: displaying protein sequence,
 color code peptide and protein sequence, add gene ontology labels.
 }
-\examples{
-componentWanted <- displayComponent(componentList, displayingComponent = 1)
-proteinSubgraph <- selectProtein(componentWanted, "P02769|ALBU_BOVIN")
-proteinSubgraph <- selectProtein(componentWanted, "DDSPDLPK")
-}

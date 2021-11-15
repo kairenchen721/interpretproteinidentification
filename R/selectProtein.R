@@ -14,11 +14,15 @@
 #'   this refers to here would be either a protein accession or peptide sequence
 #' @return The sub-graph that include a vertex and all its neighbours
 #' @examples
-#' componentWanted <- displayComponent(componentList, displayingComponent = 1)
-#' proteinSubgraph <- selectProtein(componentWanted, "P02769|ALBU_BOVIN")
-#' proteinSubgraph <- selectProtein(componentWanted, "DDSPDLPK")
+
+#' @export
 selectProtein <- function(graphToSearchIn, 
                           vertexIdentifier) {
+  
+    # potential examples
+    # proteinSubgraph <- selectProtein(componentWanted, "P02769|ALBU_BOVIN")
+    # proteinSubgraph <- selectProtein(componentWanted, "DDSPDLPK")
+    
     # since igraph uses vertex id, we find that first
     vertexID <- match(vertexIdentifier, igraph::V(graphToSearchIn)$name)
     
@@ -35,7 +39,7 @@ selectProtein <- function(graphToSearchIn,
     # i can make a subgraph, if i know the vertex ids
     proteinAndItsPeptides <- igraph::induced_subgraph(graphToSearchIn, vertexIDVector)
     
-    # need to adjust this
+    # TODO: better plot  ####
     igraph::plot.igraph(proteinAndItsPeptides,
                         vertex.label.cex = 0.05,
                         vertex.shape = 'square',
@@ -43,7 +47,7 @@ selectProtein <- function(graphToSearchIn,
                         vertex.size = 20,
                         vertex.color = 'SkyBlue2')
     
-    # need to add
+    # TODO: displaying protein sequence, color code peptide and protein sequence, add gene ontology labels.####
   
     return(proteinAndItsPeptides)
 }

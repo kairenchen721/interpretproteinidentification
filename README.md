@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of interpretproteinidentification is to …
+The goal of interpretproteinidentification is to improve the
+interpretbility of protein inference
 
 ## Installation
 
@@ -18,19 +19,8 @@ require("devtools")
 #> Loading required package: devtools
 #> Loading required package: usethis
 devtools::install_github("kairenchen721/interpretproteinidentification")
-#> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
-#> 
-#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp18Vvse/remotes139c662a4d225/kairenchen721-interpretproteinidentification-8d7b5ef/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp18Vvse/remotes139c662a4d225/kairenchen721-interpretproteinidentification-8d7b5ef/DESCRIPTION’
-#>   ─  preparing ‘interpretproteinidentification’:
-#>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘interpretproteinidentification_0.3.0.tar.gz’
-#>      
-#> 
-#> Warning in i.p(...): installation of package '/var/folders/tf/
-#> d8qr9g7s2036pdql45crxh440000gp/T//Rtmp18Vvse/file139c632e0adbb/
-#> interpretproteinidentification_0.3.0.tar.gz' had non-zero exit status
+#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (163e8056) has not changed since last install.
+#>   Use `force = TRUE` to force installation
 ```
 
 ## Example
@@ -69,19 +59,8 @@ To download the package:
 ``` r
 require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification", build_vignettes = TRUE)
-#> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
-#> 
-#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp18Vvse/remotes139c6544c36c0/kairenchen721-interpretproteinidentification-8d7b5ef/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp18Vvse/remotes139c6544c36c0/kairenchen721-interpretproteinidentification-8d7b5ef/DESCRIPTION’
-#>   ─  preparing ‘interpretproteinidentification’:
-#>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘interpretproteinidentification_0.3.0.tar.gz’
-#>      
-#> 
-#> Warning in i.p(...): installation of package '/var/folders/tf/
-#> d8qr9g7s2036pdql45crxh440000gp/T//Rtmp18Vvse/file139c6579ea27c/
-#> interpretproteinidentification_0.3.0.tar.gz' had non-zero exit status
+#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (163e8056) has not changed since last install.
+#>   Use `force = TRUE` to force installation
 library("interpretproteinidentification")
 ```
 
@@ -130,11 +109,13 @@ simplify the graph, and decompose the graph into components.
 displayComponents also uses the `igraph` R package to draw a component.
 selectProtein uses the `igraph` R package to search for relevant
 vertices (those connected to the selected protein/peptide), induce a
-sub-graph, then plot it
+sub-graph, then plot it. The data set BSA1_OMSSA.idXML is obtained from
+the OpenMS github.
 
 ## References
 
-A reference for igraph and pyopenms
+A reference for igraph and pyopenms also openms also cytoscape and all
+the package that this depends on
 
 ## Acknowledgements
 

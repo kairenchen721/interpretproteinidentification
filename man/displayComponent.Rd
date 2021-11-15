@@ -23,7 +23,3 @@ component
 It take the return of \code{generateBipartiteGraph} and an integer, and uses
 indexing to select the graph object to display
 }
-\examples{
-componentList <- generateBipartiteGraph("~/before.idXML", "~/after.idXML")
-displayComponent(componentList, displayingComponent = 1)
-}

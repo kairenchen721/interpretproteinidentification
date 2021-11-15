@@ -8,6 +8,7 @@
 #' and iterate through the file to obtain a mapping of protein accession to
 #' peptide sequence, which is then used by function from the igraph package to
 #' generate the graph, then decompose into weakly connected components
+#' Add something about assumptions
 #'
 #' @param preInferenceFilePath The file path pointing toward the file before
 #'   protein inference it contains all possible protein, and all identified
@@ -16,7 +17,7 @@
 #'   protein inference it contains all identified proteins
 #' @return It will return a list of weakly connected component of decompose from the whole graph
 #'   each component in the list is a graph object
-#' @examples generateBipartiteGraph("~/data/BSA1_OMSSA.idXML", "~/data/after_BSA1_OMSSA.idXML")
+#' @export
 generateBipartiteGraph <- function(preInferenceFilePath,
                                    postInferenceFilePath){
   # I need to read the file
@@ -26,7 +27,6 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # # testing file
   # download.file("https://github.com/OpenMS/OpenMS/raw/master/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML", "BSA1_OMSSA.idXML")
   # preInferenceFilePath <- "BSA1_OMSSA.idXML"
-  # 
   
   if (!requireNamespace("reticulate", quietly = TRUE)) {
     install.packages("reticulate")
@@ -103,7 +103,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
   
-  # TODO: maybe set inferred protein as with frame color black?
+  # TODO: maybe set inferred protein as with frame color black? ####
   igraph::plot.igraph(peptideProteinBipartiteGraph, 
                       vertex.label.cex = 0.05,
                       vertex.shape = 'square',
@@ -127,6 +127,20 @@ generateBipartiteGraph <- function(preInferenceFilePath,
 #' @return a list consisting of 2 vectors, one that contains the protein
 #'   identification and another one that contains the peptide identification
 loadFileIntoVector <- function(idXMLFilePath) {
+  if (!requireNamespace("reticulate", quietly = TRUE)) {
+    install.packages("reticulate")
+  }
+  if (!requireNamespace("igraph", quietly = TRUE)) {
+    install.packages("igraph")
+  }
+  
+  reticulate::py_install("pyopenms")
+  # import python package
+  ropenms <- reticulate::import("pyopenms", convert = FALSE)
+  
+  # basically when using an python package you need to use $ instead of :: to access thing in the packge
+  idXML <- ropenms$IdXMLFile()
+  
   # convert r list to python list since this python package does not take R lists
   proteinIdentificationObjectVector <- reticulate::r_to_py(list())
   peptideIdentificationObjectVector <- reticulate::r_to_py(list())

@@ -11,9 +11,7 @@
 #'   that the user want to display
 #' @return it returns the component that is displayed
 #'
-#' @examples
-#' componentList <- generateBipartiteGraph("~/before.idXML", "~/after.idXML")
-#' displayComponent(componentList, displayingComponent = 1)
+#' @export
 displayComponent <- function(proteinPeptideGraphComponents, 
                              displayingComponent) {
     componentInQuestion <- proteinPeptideGraphComponents[[displayingComponent]]
