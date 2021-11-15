@@ -28,4 +28,5 @@ It first uses the pyopenms package to parse the given file in idXML format,
 and iterate through the file to obtain a mapping of protein accession to
 peptide sequence, which is then used by function from the igraph package to
 generate the graph, then decompose into weakly connected components
+Add something about assumptions
 }

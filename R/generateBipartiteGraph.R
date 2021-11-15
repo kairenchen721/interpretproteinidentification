@@ -34,8 +34,6 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   if (!requireNamespace("igraph", quietly = TRUE)) {
     install.packages("igraph")
   }
-  
-  reticulate::py_install("pyopenms")
   # import python package
   ropenms <- reticulate::import("pyopenms", convert = FALSE)
   
@@ -77,10 +75,10 @@ generateBipartiteGraph <- function(preInferenceFilePath,
               # every time an row is populated, we increase the ordinal which every row before it (not including itself)
               # is populated. e.g. if the ordinal is 5, that means every row before the 5th row, 
               # (the 1st, 2nd, 3rd, 4th row) is populated 
-              print(c(ordinalRowPopulated, numPeptideProteinsEdge))
-              peptideProteinEdgeMatrix[ordinalRowPopulated, 1] <- peptideSequence
-              peptideProteinEdgeMatrix[ordinalRowPopulated, 2] <- proteinAccession
-              ordinalRowPopulated <- ordinalRowPopulated + 1
+              # print(c(ordinalRowPopulated, numPeptideProteinsEdge))
+              # peptideProteinEdgeMatrix[ordinalRowPopulated, 1] <- peptideSequence
+              # peptideProteinEdgeMatrix[ordinalRowPopulated, 2] <- proteinAccession
+              # ordinalRowPopulated <- ordinalRowPopulated + 1
               # TODO I can pre allocate, then access index to assign it ####
               peptideProteinEdgeVector <- c(peptideProteinEdgeVector, peptideSequence, proteinAccession)
               
@@ -88,7 +86,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
       }
   }
   
-  peptideProteinGraph <- igraph::graph_from_edgelist(el = peptideProteinEdgeMatrix)
+  # peptideProteinGraph <- igraph::graph_from_edgelist(el = peptideProteinEdgeMatrix)
   
   
   # ok, despite what the documentation says, the edges vector cannot be a character vector
@@ -96,20 +94,19 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # that still does not work, just ignore this
   # peptideProteinBipartiteGraph <- igraph::make_bipartite_graph(rep(0:1, length = 100), as.numeric(factor(peptideProteinEdgeVector)))
   
-  # igraph::plot.igraph(x = peptideProteinBipartiteGraph, lty = 1, arrow.mode = 0)
-  
   peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector, directed = FALSE)
   
   peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
   
   # TODO: maybe set inferred protein as with frame color black? ####
-  igraph::plot.igraph(peptideProteinBipartiteGraph, 
-                      vertex.label.cex = 0.05,
-                      vertex.shape = 'square',
-                      vertex.frame.color = NA,
-                      vertex.size = 5,
-                      vertex.color = 'SkyBlue2')
+  # there is no need to plot the whole graph here
+  # igraph::plot.igraph(peptideProteinBipartiteGraph, 
+  #                     vertex.label.cex = 0.05,
+  #                     vertex.shape = 'square',
+  #                     vertex.frame.color = NA,
+  #                     vertex.size = 5,
+  #                     vertex.color = 'SkyBlue2')
   
   peptideProteinBipartiteGraphComponents <- igraph::decompose(peptideProteinBipartiteGraph, mode = c("weak"))
   
@@ -130,11 +127,8 @@ loadFileIntoVector <- function(idXMLFilePath) {
   if (!requireNamespace("reticulate", quietly = TRUE)) {
     install.packages("reticulate")
   }
-  if (!requireNamespace("igraph", quietly = TRUE)) {
-    install.packages("igraph")
-  }
   
-  reticulate::py_install("pyopenms")
+  # reticulate::py_install("pyopenms")
   # import python package
   ropenms <- reticulate::import("pyopenms", convert = FALSE)
   
