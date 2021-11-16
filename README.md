@@ -81,6 +81,9 @@ The package tree structure is provided below
   |- NAMESPACE
   |- LICENSE
   |- README
+  |- inst
+    |-extdata
+      |-BSA1_OMSSA.idXML
   |- doc
     |-my-vignette.html
   |- man
