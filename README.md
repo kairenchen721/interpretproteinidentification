@@ -9,30 +9,6 @@
 The goal of interpretproteinidentification is to improve the
 interpretbility of protein inference
 
-## Installation
-
-You can install the development version of
-interpretproteinidentification from [GitHub](https://github.com/) with:
-
-``` r
-require("devtools")
-#> Loading required package: devtools
-#> Loading required package: usethis
-devtools::install_github("kairenchen721/interpretproteinidentification")
-#> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
-#> 
-#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp5M2YvH/remotes1788614f2b74/kairenchen721-interpretproteinidentification-e42a26a/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp5M2YvH/remotes1788614f2b74/kairenchen721-interpretproteinidentification-e42a26a/DESCRIPTION’
-#>   ─  preparing ‘interpretproteinidentification’:
-#>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘interpretproteinidentification_0.6.0.tar.gz’
-#>      
-#> 
-```
-
-## Example
-
 <!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>. -->
 <!-- You can also embed plots, for example: -->
 <!-- In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
@@ -62,13 +38,12 @@ version is 4.0.2 and the platform used to develop this package is Mac.
 
 ## Installation
 
-To download the package:
+You can install the development version of
+interpretproteinidentification from [GitHub](https://github.com/) with:
 
 ``` r
 require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification", build_vignettes = TRUE)
-#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (e42a26a6) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 library("interpretproteinidentification")
 ```
 
@@ -90,23 +65,12 @@ display. selectProtein is a function that draw a sub-graph consisting of
 the selected protein/peptide and all its adjacent vertices. The
 runinterpretproteinidentification is the function that launches the
 shiny app for this package. (not yet implemented) The package also
-contains a sample idXML data. Refer to package vignettes for more
-details.
+contains a sample idXML data. Refer to package vignettes (that will be
+here in the future) for more details.
 
-The reason why generateBipartiteGraph and displayComponent is separate
-because there may be more than 1 component that the user want to look
-at, if the package were to make displayComponent as a helper function to
-generateBipartiteGraph, and have the user input a integer as a argument
-to generateBipartiteGraph, this may cause 3 problems. The first one is
-that if displayComponent functionality is only in generateBipartiteGraph
-is that every time the user needs to display another component, the
-package re-generate the whole graph again, which can be very resource
-intensive. The second one is that if displayComponent functionality also
-exist as a separate user-facing function, is that the user may get
-confused and re-generate the whole again regardless. The third one is
-that in either case, we have an additional parameter, while it may not
-be an really bad thing, it is may be better to avoid having more
-parameters.
+``` r
+browseVignettes("TestingPackage")
+```
 
 ## Contributions
 
