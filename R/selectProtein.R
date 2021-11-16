@@ -13,8 +13,6 @@
 #' @param vertexIdentifier is an identifier for the vertex in the graph, so what
 #'   this refers to here would be either a protein accession or peptide sequence
 #' @return The sub-graph that include a vertex and all its neighbours
-#' @examples
-
 #' @export
 selectProtein <- function(graphToSearchIn, 
                           vertexIdentifier) {

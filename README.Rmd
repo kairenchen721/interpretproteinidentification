@@ -69,6 +69,18 @@ The reason why generateBipartiteGraph and displayComponent is separate because t
 ## Contributions
 The author of this package is Kai Ren Chen. The *generateBipartiteGraph* function make use of load function from `pyopenms` python package to read idXML files, and uses `igraph` R package to draw the graph, simplify the graph, and decompose the graph into components. displayComponents also uses the `igraph` R package to draw a component. selectProtein uses the `igraph` R package to search for relevant vertices (those connected to the selected protein/peptide), induce a sub-graph, then plot it. The data set BSA1_OMSSA.idXML is obtained from the OpenMS github. 
 
+## Bugs to fix/Feature to implement
+1. Examples in roxygen documentation fails (probably have to do with reticulate)
+1. test_check fails (testing in r cmd check) despite devtools::test() works maybe I am not sure if it has something to do with getwd()
+1. How do I compare edges in an igraph object?, it seems to be unsupported
+1. Get data into the package and write its documentation 1.	Change plot to include inferred protein information
+1. In select protein displaying protein sequence, color code peptide and protein sequence, add gene ontology labels
+1. Implemented search for annotations, maybe use match
+1. Consider using cytoscape	http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html
+1. somehow, building the vignette is killed when it reach one of the functions, I suspect it because I am using reticulate 
+
+
+
 ## References
 
 A reference for igraph

@@ -1,7 +1,7 @@
 Package: interpretproteinidentification
 Type: Package
 Title: Visually Interprets Protein Identification
-Version: 0.6.0
+Version: 0.7.0
 Author: person("Kai Ren", "Chen", email = "kairen.chen@mail.utoronto.ca",
                   role = c("aut", "cre"))
 Maintainer: Kai Ren Chen <kairen.chen@mail.utoronto.ca>

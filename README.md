@@ -19,8 +19,16 @@ require("devtools")
 #> Loading required package: devtools
 #> Loading required package: usethis
 devtools::install_github("kairenchen721/interpretproteinidentification")
-#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (163e8056) has not changed since last install.
-#>   Use `force = TRUE` to force installation
+#> Downloading GitHub repo kairenchen721/interpretproteinidentification@HEAD
+#> 
+#>      checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp5M2YvH/remotes1788614f2b74/kairenchen721-interpretproteinidentification-e42a26a/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/tf/d8qr9g7s2036pdql45crxh440000gp/T/Rtmp5M2YvH/remotes1788614f2b74/kairenchen721-interpretproteinidentification-e42a26a/DESCRIPTION’
+#>   ─  preparing ‘interpretproteinidentification’:
+#>      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
+#>   ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>   ─  building ‘interpretproteinidentification_0.6.0.tar.gz’
+#>      
+#> 
 ```
 
 ## Example
@@ -59,7 +67,7 @@ To download the package:
 ``` r
 require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification", build_vignettes = TRUE)
-#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (163e8056) has not changed since last install.
+#> Skipping install of 'interpretproteinidentification' from a github remote, the SHA1 (e42a26a6) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 library("interpretproteinidentification")
 ```
@@ -70,7 +78,7 @@ To run the shinyApp: Under construction
 
 ``` r
 ls("package:interpretproteinidentification")
-#> character(0)
+#> [1] "displayComponent"       "generateBipartiteGraph" "selectProtein"
 data(package = "interpretproteinidentification")
 #> no data sets found
 ```
@@ -111,6 +119,24 @@ selectProtein uses the `igraph` R package to search for relevant
 vertices (those connected to the selected protein/peptide), induce a
 sub-graph, then plot it. The data set BSA1_OMSSA.idXML is obtained from
 the OpenMS github.
+
+## Bugs to fix/Feature to implement
+
+1.  Examples in roxygen documentation fails (probably have to do with
+    reticulate)
+2.  test_check fails (testing in r cmd check) despite devtools::test()
+    works maybe I am not sure if it has something to do with getwd()
+3.  How do I compare edges in an igraph object?, it seems to be
+    unsupported
+4.  Get data into the package and write its documentation 1. Change plot
+    to include inferred protein information
+5.  In select protein displaying protein sequence, color code peptide
+    and protein sequence, add gene ontology labels
+6.  Implemented search for annotations, maybe use match
+7.  Consider using cytoscape
+    <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
+8.  somehow, building the vignette is killed when it reach one of the
+    functions, I suspect it because I am using reticulate
 
 ## References
 
