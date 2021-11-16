@@ -42,7 +42,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   
   # this is a function
   preInferenceLoadedVector <- loadFileIntoVector(preInferenceFilePath)
-  print(paste0("file loaded into R object"))
+  # print(paste0("file loaded into R object"))
   
   peptideIdentificationObjectVector <- preInferenceLoadedVector$peptide
   
@@ -52,7 +52,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   
   #find out how many edges there are
   numPeptideProteinsEdge <- findNumEdges(peptideIdentificationObjectVector)
-  print(paste0("number of edges found"))
+  # print(paste0("number of edges found"))
   
   peptideProteinEdgeMatrix <- matrix(nrow = numPeptideProteinsEdge, ncol = 2)
   
@@ -139,15 +139,15 @@ loadFileIntoVector <- function(idXMLFilePath) {
   proteinIdentificationObjectVector <- reticulate::r_to_py(list())
   peptideIdentificationObjectVector <- reticulate::r_to_py(list())
   
-  print(paste0("start to load file into python object"))
+  # print(paste0("start to load file into python object"))
   # load to the package into the converted lists
   idXML$load(idXMLFilePath, proteinIdentificationObjectVector, peptideIdentificationObjectVector)
-  print(paste0("file loaded into python object, now converting python object to R object, this will take sometime"))
+  # print(paste0("file loaded into python object, now converting python object to R object, this will take sometime"))
   
   # then convert the python list back to r object, since R cannot use python objects
   proteinIdentificationObjectVector <- reticulate::py_to_r(proteinIdentificationObjectVector)
   peptideIdentificationObjectVector <- reticulate::py_to_r(peptideIdentificationObjectVector)
-  print(paste0("python object convert to R object"))
+  # print(paste0("python object convert to R object"))
   
   results <- list(protein = proteinIdentificationObjectVector, peptide = peptideIdentificationObjectVector)
   
@@ -170,10 +170,9 @@ findNumEdges <- function(peptideIdentificationObjectVector) {
         peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
         
         for (i in 1:length(peptideHits)) {
-            # peptideSequence <- peptideHits[[i]]$getSequence()
             peptideEvidenceVector <- peptideHits[[i]]$getPeptideEvidences()
             numPeptideProteinsEdge <- numPeptideProteinsEdge + length(peptideEvidenceVector)
-            print(c("numPeptideProteinsEdge", numPeptideProteinsEdge))
+            # print(c("numPeptideProteinsEdge", numPeptideProteinsEdge))
         }
     }
     return(numPeptideProteinsEdge)

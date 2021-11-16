@@ -106,9 +106,9 @@ test_that("reading into graph works", {
   handMadeGraph <- igraph::simplify(handMadeGraph)
   handMadeGraphComponents <- igraph::decompose(handMadeGraph, mode = c("weak"))
 
-  generatedGraphComponents <- generateBipartiteGraph(file.path("/Users/kren/Desktop/unnamed/uni notes and resources/5th year fall/bcb410/interpretproteinidentification/tests/testthat", "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
+  generatedGraphComponents <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
 
-  # expect_equal(length(generatedGraphComponents), length(handMadeGraphComponents))
+  expect_equal(length(generatedGraphComponents), length(handMadeGraphComponents))
   for (i in 1:length(generatedGraphComponents)) {
     generatedVertexNames <- igraph::V(generatedGraphComponents[[i]])$name
     handMadeVertexName <- igraph::V(handMadeGraphComponents[[i]])$name

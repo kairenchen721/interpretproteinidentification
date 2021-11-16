@@ -1,0 +1,28 @@
+---
+title: "interpretProteinIdentification vignette, Author: Kai Ren Chen, Date: Nov/16/2021"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In proteomics, the typical approach is bottom-up proteomics, where proteins are digested into peptide by using proteases
+
+Let say for example that you have obtain protein inference result (i.e. the protein that are considered by your protein inference algorithm to be in the sample that underwent mass spectrometry) based on peptide identified from raw mass spectras. 
+
+And then you are confused why a certain protein is inferred, instead of another one, and what peptide is conclusion based off of?
+
+This is where this package can help, it can plot the protein and peptide relationship as a 
+
+First, we should
+```{r setup}
+library(interpretproteinidentification)
+```

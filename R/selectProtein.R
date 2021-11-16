@@ -5,7 +5,7 @@
 #'
 #' Using igraph function, It first finds the vertex object that identifier
 #' refers to, then find the neighbours of that vertex, and finally induce a
-#' sub-graph that include them. Feature yet to add: displaying protein sequence,
+#' sub-graph that include them. You Feature yet to add: displaying protein sequence,
 #' color code peptide and protein sequence, add gene ontology labels.
 #'
 #' @param graphToSearchIn is the component that the user has chosen to displayed
