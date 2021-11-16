@@ -55,8 +55,39 @@ interpretproteinidentification contains 4 functions to visualize protein inferen
 ```{r, eval=FALSE}
 browseVignettes("TestingPackage")
 ```
+The package tree structure is provided below
+``` r
+- interpretProteinIdentification
+  |- interpretProteinIdentification.Rproj
+  |- DESCRIPTION
+  |- NAMESPACE
+  |- LICENSE
+  |- README
+  |- doc
+    |-my-vignette.html
+  |- man
+    |- displayComponent.Rd
+    |- findNumEdges.Rd
+    |- generateBipartiteGraph.Rd
+    |- interpretProteinIdentitification.Rd
+    |- loadFileIntoVector.Rd
+    |- selectProtein.Rd
+  |- R
+    |- displayComponent.R
+    |- searchForAnnotations.R
+    |- generateBipartiteGraph.R
+    |- interpretProteinIdentitification-package.R
+    |- selectProtein.R
+  |- vignettes
+  |- tests
+    |- testthat.R
+    |- testthat
+      |- test-displayComponent.R
+      |- test-searchForAnnotations.R
+      |- test-generateBipartiteGraph.R
+      |- test-selectProtein.R
+```
 
-  
 ## Contributions
 The author of this package is Kai Ren Chen. The *generateBipartiteGraph* function make use of load function from `pyopenms` python package [3] to read idXML files, and uses `igraph` R package [2] to draw the graph, simplify the graph, and decompose the graph into components. displayComponents also uses the `igraph` R package [2] to draw a component. selectProtein uses the `igraph` R package [2] to search for relevant vertices (those connected to the selected protein/peptide), induce a sub-graph, then plot it. The data set BSA1_OMSSA.idXML is obtained from the OpenMS github. [1] 
 

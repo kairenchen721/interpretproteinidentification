@@ -72,6 +72,40 @@ here in the future) for more details.
 browseVignettes("TestingPackage")
 ```
 
+The package tree structure is provided below
+
+``` r
+- interpretProteinIdentification
+  |- interpretProteinIdentification.Rproj
+  |- DESCRIPTION
+  |- NAMESPACE
+  |- LICENSE
+  |- README
+  |- doc
+    |-my-vignette.html
+  |- man
+    |- displayComponent.Rd
+    |- findNumEdges.Rd
+    |- generateBipartiteGraph.Rd
+    |- interpretProteinIdentitification.Rd
+    |- loadFileIntoVector.Rd
+    |- selectProtein.Rd
+  |- R
+    |- displayComponent.R
+    |- searchForAnnotations.R
+    |- generateBipartiteGraph.R
+    |- interpretProteinIdentitification-package.R
+    |- selectProtein.R
+  |- vignettes
+  |- tests
+    |- testthat.R
+    |- testthat
+      |- test-displayComponent.R
+      |- test-searchForAnnotations.R
+      |- test-generateBipartiteGraph.R
+      |- test-selectProtein.R
+```
+
 ## Contributions
 
 The author of this package is Kai Ren Chen. The *generateBipartiteGraph*
