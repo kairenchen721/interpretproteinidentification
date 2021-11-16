@@ -3,3 +3,4 @@
 export(displayComponent)
 export(generateBipartiteGraph)
 export(selectProtein)
+import(utils)

@@ -17,22 +17,19 @@
 #'   protein inference it contains all identified proteins
 #' @return It will return a list of weakly connected component of decompose from the whole graph
 #'   each component in the list is a graph object
+#' @import utils
 #' @export
 generateBipartiteGraph <- function(preInferenceFilePath,
                                    postInferenceFilePath){
-  # I need to read the file
-  # protein accession, peptide id, peptide evidence (match to protein)
-  
-  
   # # testing file
   # download.file("https://github.com/OpenMS/OpenMS/raw/master/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML", "BSA1_OMSSA.idXML")
   # preInferenceFilePath <- "BSA1_OMSSA.idXML"
   
   if (!requireNamespace("reticulate", quietly = TRUE)) {
-    install.packages("reticulate")
+    utils::install.packages("reticulate")
   }
   if (!requireNamespace("igraph", quietly = TRUE)) {
-    install.packages("igraph")
+    utils::install.packages("igraph")
   }
   # import python package
   ropenms <- reticulate::import("pyopenms", convert = FALSE)
@@ -98,16 +95,6 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   
   peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
-  
-  # TODO: maybe set inferred protein as with frame color black? ####
-  # there is no need to plot the whole graph here
-  # igraph::plot.igraph(peptideProteinBipartiteGraph, 
-  #                     vertex.label.cex = 0.05,
-  #                     vertex.shape = 'square',
-  #                     vertex.frame.color = NA,
-  #                     vertex.size = 5,
-  #                     vertex.color = 'SkyBlue2')
-  
   peptideProteinBipartiteGraphComponents <- igraph::decompose(peptideProteinBipartiteGraph, mode = c("weak"))
   
   return(peptideProteinBipartiteGraphComponents)
@@ -123,9 +110,10 @@ generateBipartiteGraph <- function(preInferenceFilePath,
 #' @param idXMLFilePath a filepath that point to the idXML file to be parsed
 #' @return a list consisting of 2 vectors, one that contains the protein
 #'   identification and another one that contains the peptide identification
+#' @import utils
 loadFileIntoVector <- function(idXMLFilePath) {
   if (!requireNamespace("reticulate", quietly = TRUE)) {
-    install.packages("reticulate")
+    utils::install.packages("reticulate")
   }
   
   # reticulate::py_install("pyopenms")
