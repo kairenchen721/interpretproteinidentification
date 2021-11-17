@@ -18,23 +18,26 @@ interpretbility of protein inference
 The purpose of this package is to visualize the connection between
 peptide identified from mass spectrometry, and the protein that the
 peptide can map to, and and to improve interpertability of a proteome.
-This package is not trying to show a plot that visualizes the
-performance of protein inference, nor is it trying to visualize the
-connection between mass spectrometry spectra and peptides. The main
-reason why this is interesting is because one peptide sequence can map
-to multiple proteins sequence (because or else if one peptide can only
-map to one protein, visualization of this kind would not provide much
-information compare to text files), so this means that this package can
-show the what conclusion (protein) has been drawn (inferred) given the
-evidences (peptide), and what other conclusion could have been drawn
-(other protein that could possibly be inferred). In theory, cytoscape
-\[4\] can do this, (since it is a visualizer for any network), but file
-reading (idXML \[1\] is not an supported file format) and processing
-(having to click many thing in the graphical user interface, or run a
-few command in the command line interface) may be an issue, there is a
-possibility that directly using cytoscape may be more time-consuming (in
-non-automated parts). The R version is 4.0.2 and the platform used to
-develop this package is Mac.
+In proteomics, bottom-up proteomics is used more often, where the
+protein first undergoes protease digestion into smaller piece of protein
+known as “peptides”, it is then the peptides that the mass spectrometer
+identifies. Then each peptide is determined to be part which protein
+based on sequence. This package is not trying to show a plot that
+visualizes the performance of protein inference, nor is it trying to
+visualize the connection between mass spectrometry spectra and peptides.
+The main reason why this is interesting is because one peptide sequence
+can map to multiple proteins sequence (because or else if one peptide
+can only map to one protein, visualization of this kind would not
+provide much information compare to text files), so this means that this
+package can show the what conclusion (or protein) has been drawn (or
+inferred) given the evidences (or peptide), and what other conclusion
+could have been drawn (or other protein that could possibly be
+inferred). In theory, cytoscape \[4\] can do this, (since it is a
+visualizer for any network), but file reading (idXML \[1\] is not an
+supported file format) and processing (having to click many thing in the
+graphical user interface, or run a few command in the command line
+interface) may be an issue. The R version is 4.0.2 and the platform used
+to develop this package is Mac.
 
 ## Installation
 
@@ -136,8 +139,11 @@ obtained from the OpenMS github. \[1\]
 7.  Implemented search for annotations, maybe use match
 8.  Consider using cytoscape \[4\]
     <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
-9.  somehow, building the vignette is killed when it reach one of the
-    functions, I suspect it because I am using reticulate
+9.  somehow, building the vignette is killed when it reach the first
+    functions (generateBipartiteGraph), I suspect it because I am using
+    reticulate, even though i can force build it using
+    (rmarkdown::render(input = “my-vignette.Rmd”, output_format =
+    “html_document”)) (see doc for the vignette)
 
 ## References
 

@@ -44,3 +44,18 @@ we have an additional parameter, while it may not be an really bad thing,
 it is may be better to avoid having more parameters.
 }
 
+\section{what this package is going to need}{
+
+There are only 4 pieces of data that my package needs.
+\enumerate{
+\item The protein’s accession number 2. Protein-peptide matches (this just means
+which peptide’s sequence matches part of the protein sequence). 3. An
+identifier for the peptides. 4. The protein that are“identified”, meaning
+that they are considered present in the sample. It assumed that there are
+all in idXML files. Sometimes, there is a data for “before” protein inference
+and data for “after” protein inference. sometimes, the “after” may not
+provide the peptides so this package will also assume that both “before”
+and “after” files will be provided
+}
+}
+
