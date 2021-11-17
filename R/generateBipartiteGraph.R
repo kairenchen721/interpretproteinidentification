@@ -15,13 +15,15 @@
 #'   peptides
 #' @param postInferenceFilePath The file path pointing toward the file after
 #'   protein inference it contains all identified proteins
-#' @return It will return a graph that include all mapping of protein to peptides
+#' @return It will return a graph that include all mapping of protein 
+#' to peptides
 #' @import utils
 #' @export
 generateBipartiteGraph <- function(preInferenceFilePath,
                                    postInferenceFilePath){
   # # testing file
-  # download.file("https://github.com/OpenMS/OpenMS/raw/master/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML", "BSA1_OMSSA.idXML")
+  # download.file("https://github.com/OpenMS/OpenMS/raw/master/share/OpenMS/
+  # examples/BSA/BSA1_OMSSA.idXML", "BSA1_OMSSA.idXML")
   # preInferenceFilePath <- "BSA1_OMSSA.idXML"
   
   if (!requireNamespace("reticulate", quietly = TRUE)) {
@@ -33,7 +35,8 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # import python package
   ropenms <- reticulate::import("pyopenms", convert = FALSE)
   
-  # basically when using an python package you need to use $ instead of :: to access thing in the packge
+  # basically when using an python package you need to use $ instead of :: 
+  # to access thing in the packge
   idXML <- ropenms$IdXMLFile()
   
   # this is a function
@@ -51,33 +54,39 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # print(paste0("number of edges found"))
   
   # so every row before this ordinal is populated
-  # it starts at 1 (meaning that the 0th row is population) there is no 0th row so, no row is populated
+  # it starts at 1 (meaning that the 0th row is population) there is no 0th 
+  # row so, no row is populated
   ordinalElementPopulated <- 1
   peptideProteinEdgeVector <- character(length = numPeptideProteinsEdge*2)
   
   # iterate over the peptides 
-  for (i in 1:length(peptideIdentificationObjectVector)) {
+  for (i in seq(along = peptideIdentificationObjectVector)) {
       peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
       
-      for (j in 1:length(peptideHits)) {
+      for (j in seq(along = peptideHits)) {
           peptideEvidenceVector <- peptideHits[[j]]$getPeptideEvidences()
           
-          for (k in 1:length(peptideEvidenceVector)) {
-              proteinAccession <- toString(peptideEvidenceVector[[k]]$getProteinAccession())
+          for (k in seq(along = peptideEvidenceVector)) {
+              proteinAccession <- toString(peptideEvidenceVector
+                                           [[k]]$getProteinAccession())
               peptideSequence <- toString(peptideHits[[j]]$getSequence())
                 
-              # every time an element is populated, we increase the ordinal which every element before it (not including itself)
-              # is populated. e.g. if the ordinal is 5, that means every element before the 5th element, 
-              # (the 1st, 2nd, 3rd, 4th element) is populated 
+              # every time an element is populated, we increase the ordinal 
+              # which every element before it (not including itself) is 
+              # populated. e.g. if the ordinal is 5, that means every element 
+              # before the 5th element, (the 1st, 2nd, 3rd, 4th element) is 
+              # populated 
               peptideProteinEdgeVector[ordinalElementPopulated] <- peptideSequence
-              peptideProteinEdgeVector[ordinalElementPopulated + 1] <- proteinAccession
+              peptideProteinEdgeVector[ordinalElementPopulated + 1] <- 
+                proteinAccession
               ordinalElementPopulated <- ordinalElementPopulated + 2
               
           }
       }
   }
   
-  peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector, directed = FALSE)
+  peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector,
+                                                     directed = FALSE)
   
   peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
@@ -103,24 +112,31 @@ loadFileIntoVector <- function(idXMLFilePath) {
     # import python package
     ropenms <- reticulate::import("pyopenms", convert = FALSE)
     
-    # basically when using an python package you need to use $ instead of :: to access thing in the packge
+    # basically when using an python package you need to use $ instead of 
+    # :: to access thing in the package
     idXML <- ropenms$IdXMLFile()
     
-    # convert r list to python list since this python package does not take R lists
+    # convert r list to python list since this python package does not take 
+    # R lists
     proteinIdentificationObjectVector <- reticulate::r_to_py(list())
     peptideIdentificationObjectVector <- reticulate::r_to_py(list())
     
     # print(paste0("start to load file into python object"))
     # load to the package into the converted lists
-    idXML$load(idXMLFilePath, proteinIdentificationObjectVector, peptideIdentificationObjectVector)
-    # print(paste0("file loaded into python object, now converting python object to R object, this will take sometime"))
+    idXML$load(idXMLFilePath, proteinIdentificationObjectVector, 
+               peptideIdentificationObjectVector)
+    # print(paste0("file loaded into python object, now converting python object
+    # to R object, this will take sometime"))
     
     # then convert the python list back to r object, since R cannot use python objects
-    proteinIdentificationObjectVector <- reticulate::py_to_r(proteinIdentificationObjectVector)
-    peptideIdentificationObjectVector <- reticulate::py_to_r(peptideIdentificationObjectVector)
+    proteinIdentificationObjectVector <- reticulate::py_to_r(
+      proteinIdentificationObjectVector)
+    peptideIdentificationObjectVector <- reticulate::py_to_r(
+      peptideIdentificationObjectVector)
     # print(paste0("python object convert to R object"))
     
-    results <- list(protein = proteinIdentificationObjectVector, peptide = peptideIdentificationObjectVector)
+    results <- list(protein = proteinIdentificationObjectVector,
+                    peptide = peptideIdentificationObjectVector)
   
   return(results)
 }
@@ -137,16 +153,17 @@ loadFileIntoVector <- function(idXMLFilePath) {
 #' @return the number of edges
 findNumEdges <- function(peptideIdentificationObjectVector) {
     numPeptideProteinsEdge <- 0
-    for (i in 1:length(peptideIdentificationObjectVector)) {
+    for (i in seq(along = peptideIdentificationObjectVector)) {
         peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
         
-        for (i in 1:length(peptideHits)) {
+        for (i in seq(along = peptideHits)) {
             peptideEvidenceVector <- peptideHits[[i]]$getPeptideEvidences()
-            numPeptideProteinsEdge <- numPeptideProteinsEdge + length(peptideEvidenceVector)
+            numPeptideProteinsEdge <- numPeptideProteinsEdge + length(
+              peptideEvidenceVector)
             # print(c("numPeptideProteinsEdge", numPeptideProteinsEdge))
         }
     }
     return(numPeptideProteinsEdge)
 }
 
-
+# [END]

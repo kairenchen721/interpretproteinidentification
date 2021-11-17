@@ -118,3 +118,5 @@ test_that("display components works", {
     expect_equal(generatedVertexNames, handMadeVertexName)
   }
 })
+
+# [END]

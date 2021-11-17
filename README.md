@@ -129,14 +129,14 @@ obtained from the OpenMS github. \[1\]
     works maybe I am not sure if it has something to do with getwd()
 3.  How do I compare edges in an igraph object?, it seems to be
     unsupported
-4.  Get data into the package and write its documentation 1. Change plot
-    to include inferred protein information
-5.  In select protein displaying protein sequence, color code peptide
+4.  Get data into the package and write its documentation
+5.  Change plot to include inferred protein information
+6.  In select protein displaying protein sequence, color code peptide
     and protein sequence, add gene ontology labels
-6.  Implemented search for annotations, maybe use match
-7.  Consider using cytoscape \[4\]
+7.  Implemented search for annotations, maybe use match
+8.  Consider using cytoscape \[4\]
     <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
-8.  somehow, building the vignette is killed when it reach one of the
+9.  somehow, building the vignette is killed when it reach one of the
     functions, I suspect it because I am using reticulate
 
 ## References

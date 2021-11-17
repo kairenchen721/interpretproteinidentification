@@ -15,7 +15,8 @@ peptides}
 protein inference it contains all identified proteins}
 }
 \value{
-It will return a graph that include all mapping of protein to peptides
+It will return a graph that include all mapping of protein
+to peptides
 }
 \description{
 \code{generateBipartiteGraph} Based on what protein mapped to peptide

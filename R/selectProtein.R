@@ -5,8 +5,8 @@
 #'
 #' Using igraph function, It first finds the vertex object that identifier
 #' refers to, then find the neighbours of that vertex, and finally induce a
-#' sub-graph that include them. You Feature yet to add: displaying protein sequence,
-#' color code peptide and protein sequence, add gene ontology labels.
+#' sub-graph that include them. You Feature yet to add: displaying protein 
+#' sequence, color code peptide and protein sequence, add gene ontology labels.
 #'
 #' @param graphToSearchIn is the component that the user has chosen to displayed
 #'   in \code{displayComponent}, selectProtein searches within this component
@@ -28,14 +28,16 @@ selectProtein <- function(graphToSearchIn,
     vertexObjectVector <- igraph::neighbors(graphToSearchIn, vertexID)
     
     vertexIDVector <- numeric(length = length(vertexObjectVector))
-    for (i in 1:length(vertexObjectVector)) {
+    for (i in seq(along = vertexObjectVector)) {
         # match the vertex object with the item in the vertex sequence 
-        vertexIDVector[i] <- match(vertexObjectVector[i], igraph::V(graphToSearchIn))
+        vertexIDVector[i] <- match(vertexObjectVector[i], igraph::V(
+          graphToSearchIn))
     }
     
     vertexIDVector <- c(vertexIDVector, vertexID)
     # i can make a subgraph, if i know the vertex ids
-    proteinAndItsPeptides <- igraph::induced_subgraph(graphToSearchIn, vertexIDVector)
+    proteinAndItsPeptides <- igraph::induced_subgraph(graphToSearchIn, 
+                                                      vertexIDVector)
     
     # TODO: better plot  ####
     igraph::plot.igraph(proteinAndItsPeptides,
@@ -45,7 +47,10 @@ selectProtein <- function(graphToSearchIn,
                         vertex.size = 20,
                         vertex.color = 'SkyBlue2')
     
-    # TODO: displaying protein sequence, color code peptide and protein sequence, add gene ontology labels.####
+    # TODO: displaying protein sequence, color code peptide 
+    # and protein sequence, add gene ontology labels.####
   
     return(proteinAndItsPeptides)
 }
+
+# [END]
