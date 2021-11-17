@@ -26,7 +26,7 @@ test_that("select protein works", {
   handMadeGraph <- igraph::simplify(handMadeGraph)
   
   generatedGraphComponents <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
-  component <- interpretproteinidentification::displayComponent(graph, 1)
+  component <- interpretproteinidentification::displayComponent(generatedGraphComponents, 1)
   generatedSubGraph <- interpretproteinidentification::selectProtein(component, "P02769|ALBU_BOVIN")
   expect_equal(igraph::V(generatedSubGraph)$name, igraph::V(handMadeGraph)$name)
 })
