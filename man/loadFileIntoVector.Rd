@@ -14,7 +14,7 @@ a list consisting of 2 vectors, one that contains the protein
 identification and another one that contains the peptide identification
 }
 \description{
-using the python package, pyopenms, this would load the idXML files into an R
+using the python package, pyopenms, load the idXML files into an R
 object
 }
 \details{

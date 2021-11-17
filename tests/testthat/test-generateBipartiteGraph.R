@@ -104,16 +104,13 @@ test_that("reading into graph works", {
   
   handMadeGraph <- igraph::make_graph(allEdges, directed = FALSE)
   handMadeGraph <- igraph::simplify(handMadeGraph)
-  handMadeGraphComponents <- igraph::decompose(handMadeGraph, mode = c("weak"))
 
-  generatedGraphComponents <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
+  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
 
-  expect_equal(length(generatedGraphComponents), length(handMadeGraphComponents))
-  for (i in 1:length(generatedGraphComponents)) {
-    generatedVertexNames <- igraph::V(generatedGraphComponents[[i]])$name
-    handMadeVertexName <- igraph::V(handMadeGraphComponents[[i]])$name
-    expect_equal(generatedVertexNames, handMadeVertexName)
-  }
+  generatedVertexNames <- igraph::V(generatedGraph)$name
+  handMadeVertexName <- igraph::V(handMadeGraph)$name
+  expect_equal(generatedVertexNames, handMadeVertexName)
+
   
   # this is meant to compare edges, but this comparison is not supported by expect_equal
   # for (i in 1:length(generatedGraphComponents)) {

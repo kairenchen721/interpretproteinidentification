@@ -15,8 +15,7 @@
 #'   peptides
 #' @param postInferenceFilePath The file path pointing toward the file after
 #'   protein inference it contains all identified proteins
-#' @return It will return a list of weakly connected component of decompose from the whole graph
-#'   each component in the list is a graph object
+#' @return It will return a graph that include all mapping of protein to peptides
 #' @import utils
 #' @export
 generateBipartiteGraph <- function(preInferenceFilePath,
@@ -51,12 +50,10 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   numPeptideProteinsEdge <- findNumEdges(peptideIdentificationObjectVector)
   # print(paste0("number of edges found"))
   
-  peptideProteinEdgeMatrix <- matrix(nrow = numPeptideProteinsEdge, ncol = 2)
-  
   # so every row before this ordinal is populated
   # it starts at 1 (meaning that the 0th row is population) there is no 0th row so, no row is populated
-  ordinalRowPopulated <- 1
-  peptideProteinEdgeVector <- c()
+  ordinalElementPopulated <- 1
+  peptideProteinEdgeVector <- character(length = numPeptideProteinsEdge*2)
   
   # iterate over the peptides 
   for (i in 1:length(peptideIdentificationObjectVector)) {
@@ -69,40 +66,27 @@ generateBipartiteGraph <- function(preInferenceFilePath,
               proteinAccession <- toString(peptideEvidenceVector[[k]]$getProteinAccession())
               peptideSequence <- toString(peptideHits[[j]]$getSequence())
                 
-              # every time an row is populated, we increase the ordinal which every row before it (not including itself)
-              # is populated. e.g. if the ordinal is 5, that means every row before the 5th row, 
-              # (the 1st, 2nd, 3rd, 4th row) is populated 
-              # print(c(ordinalRowPopulated, numPeptideProteinsEdge))
-              # peptideProteinEdgeMatrix[ordinalRowPopulated, 1] <- peptideSequence
-              # peptideProteinEdgeMatrix[ordinalRowPopulated, 2] <- proteinAccession
-              # ordinalRowPopulated <- ordinalRowPopulated + 1
-              # TODO I can pre allocate, then access index to assign it ####
-              peptideProteinEdgeVector <- c(peptideProteinEdgeVector, peptideSequence, proteinAccession)
+              # every time an element is populated, we increase the ordinal which every element before it (not including itself)
+              # is populated. e.g. if the ordinal is 5, that means every element before the 5th element, 
+              # (the 1st, 2nd, 3rd, 4th element) is populated 
+              peptideProteinEdgeVector[ordinalElementPopulated] <- peptideSequence
+              peptideProteinEdgeVector[ordinalElementPopulated + 1] <- proteinAccession
+              ordinalElementPopulated <- ordinalElementPopulated + 2
               
           }
       }
   }
   
-  # peptideProteinGraph <- igraph::graph_from_edgelist(el = peptideProteinEdgeMatrix)
-  
-  
-  # ok, despite what the documentation says, the edges vector cannot be a character vector
-  # so I gave them internal vertex ids, by using factor and then as numeric
-  # that still does not work, just ignore this
-  # peptideProteinBipartiteGraph <- igraph::make_bipartite_graph(rep(0:1, length = 100), as.numeric(factor(peptideProteinEdgeVector)))
-  
   peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector, directed = FALSE)
   
   peptideProteinBipartiteGraph <- igraph::simplify(peptideProteinBipartiteGraph)
   
-  peptideProteinBipartiteGraphComponents <- igraph::decompose(peptideProteinBipartiteGraph, mode = c("weak"))
-  
-  return(peptideProteinBipartiteGraphComponents)
+  return(peptideProteinBipartiteGraph)
 }
 
 #' parses idXML
 #'
-#' using the python package, pyopenms, this would load the idXML files into an R
+#' using the python package, pyopenms, load the idXML files into an R
 #' object
 #'
 #' it first take convert R list to python list, load the data into the python
@@ -112,32 +96,31 @@ generateBipartiteGraph <- function(preInferenceFilePath,
 #'   identification and another one that contains the peptide identification
 #' @import utils
 loadFileIntoVector <- function(idXMLFilePath) {
-  if (!requireNamespace("reticulate", quietly = TRUE)) {
-    utils::install.packages("reticulate")
-  }
-  
-  # reticulate::py_install("pyopenms")
-  # import python package
-  ropenms <- reticulate::import("pyopenms", convert = FALSE)
-  
-  # basically when using an python package you need to use $ instead of :: to access thing in the packge
-  idXML <- ropenms$IdXMLFile()
-  
-  # convert r list to python list since this python package does not take R lists
-  proteinIdentificationObjectVector <- reticulate::r_to_py(list())
-  peptideIdentificationObjectVector <- reticulate::r_to_py(list())
-  
-  # print(paste0("start to load file into python object"))
-  # load to the package into the converted lists
-  idXML$load(idXMLFilePath, proteinIdentificationObjectVector, peptideIdentificationObjectVector)
-  # print(paste0("file loaded into python object, now converting python object to R object, this will take sometime"))
-  
-  # then convert the python list back to r object, since R cannot use python objects
-  proteinIdentificationObjectVector <- reticulate::py_to_r(proteinIdentificationObjectVector)
-  peptideIdentificationObjectVector <- reticulate::py_to_r(peptideIdentificationObjectVector)
-  # print(paste0("python object convert to R object"))
-  
-  results <- list(protein = proteinIdentificationObjectVector, peptide = peptideIdentificationObjectVector)
+    if (!requireNamespace("reticulate", quietly = TRUE)) {
+      utils::install.packages("reticulate")
+    }
+    
+    # import python package
+    ropenms <- reticulate::import("pyopenms", convert = FALSE)
+    
+    # basically when using an python package you need to use $ instead of :: to access thing in the packge
+    idXML <- ropenms$IdXMLFile()
+    
+    # convert r list to python list since this python package does not take R lists
+    proteinIdentificationObjectVector <- reticulate::r_to_py(list())
+    peptideIdentificationObjectVector <- reticulate::r_to_py(list())
+    
+    # print(paste0("start to load file into python object"))
+    # load to the package into the converted lists
+    idXML$load(idXMLFilePath, proteinIdentificationObjectVector, peptideIdentificationObjectVector)
+    # print(paste0("file loaded into python object, now converting python object to R object, this will take sometime"))
+    
+    # then convert the python list back to r object, since R cannot use python objects
+    proteinIdentificationObjectVector <- reticulate::py_to_r(proteinIdentificationObjectVector)
+    peptideIdentificationObjectVector <- reticulate::py_to_r(peptideIdentificationObjectVector)
+    # print(paste0("python object convert to R object"))
+    
+    results <- list(protein = proteinIdentificationObjectVector, peptide = peptideIdentificationObjectVector)
   
   return(results)
 }

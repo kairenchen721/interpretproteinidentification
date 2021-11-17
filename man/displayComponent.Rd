@@ -4,10 +4,11 @@
 \alias{displayComponent}
 \title{select an component to display}
 \usage{
-displayComponent(proteinPeptideGraphComponents, displayingComponent)
+displayComponent(proteinPeptideGraph, displayingComponent)
 }
 \arguments{
-\item{proteinPeptideGraphComponents}{the return from \code{generateBipartiteGraph}}
+\item{proteinPeptideGraph}{the return from \code{generateBipartiteGraph}, a graph object, containing all
+peptides and protein in the idXML given}
 
 \item{displayingComponent}{an integer representing the index of the component
 that the user want to display}
@@ -20,6 +21,6 @@ it returns the component that is displayed
 component
 }
 \details{
-It take the return of \code{generateBipartiteGraph} and an integer, and uses
-indexing to select the graph object to display
+It take the return of \code{generateBipartiteGraph} and an integer, and decompose the graph
+and uses indexing to select the graph object to display
 }

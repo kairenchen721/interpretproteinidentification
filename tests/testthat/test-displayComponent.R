@@ -109,12 +109,11 @@ test_that("display components works", {
   handMadeGraph <- igraph::simplify(handMadeGraph)
   handMadeGraphComponents <- igraph::decompose(handMadeGraph, mode = c("weak"))
   
-  generatedGraphComponents <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
+  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
   
-  expect_equal(length(generatedGraphComponents), length(handMadeGraphComponents))
-  for (i in 1:length(generatedGraphComponents)) {
-    displayedGeneratedComponents <- interpretproteinidentification::displayComponent(generatedGraphComponents, i)
-    generatedVertexNames <- igraph::V(displayedGeneratedComponents)$name
+  for (i in 1:length(handMadeGraphComponents)) {
+    displayedGeneratedComponent <- interpretproteinidentification::displayComponent(generatedGraph, i)
+    generatedVertexNames <- igraph::V(displayedGeneratedComponent)$name
     handMadeVertexName <- igraph::V(handMadeGraphComponents[[i]])$name
     expect_equal(generatedVertexNames, handMadeVertexName)
   }

@@ -15,8 +15,7 @@ peptides}
 protein inference it contains all identified proteins}
 }
 \value{
-It will return a list of weakly connected component of decompose from the whole graph
-each component in the list is a graph object
+It will return a graph that include all mapping of protein to peptides
 }
 \description{
 \code{generateBipartiteGraph} Based on what protein mapped to peptide
