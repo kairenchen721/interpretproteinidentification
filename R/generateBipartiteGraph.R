@@ -23,6 +23,10 @@
 #'   
 #' @return It will return a graph that include all mapping of protein 
 #' to peptides
+#' 
+#' @examples 
+#' preInferenceFilePath <-  system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
+#' interpretproteinidentification::generateBipartiteGraph(preInferenceFilePath, "")
 #' @import reticulate
 #' @import igraph
 #' @export
@@ -39,6 +43,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # basically when using an python package you need to use $ instead of :: 
   # to access thing in the packge
   idXML <- ropenms$IdXMLFile()
+  
   
   # this is a function
   preInferenceLoadedVector <- loadFileIntoVector(preInferenceFilePath)
@@ -69,8 +74,8 @@ generateBipartiteGraph <- function(preInferenceFilePath,
           
           for (peptideEvidenceNum in seq(along = peptideEvidenceVector)) {
               proteinAccession <- toString(peptideEvidenceVector
-                                           [[k]]$getProteinAccession())
-              peptideSequence <- toString(peptideHits[[j]]$getSequence())
+                                           [[peptideHitNum]]$getProteinAccession())
+              peptideSequence <- toString(peptideHits[[peptideEvidenceNum]]$getSequence())
                 
               # every time an element is populated, we increase the ordinal 
               # which every element before it (not including itself) is 

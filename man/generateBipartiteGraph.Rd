@@ -35,3 +35,7 @@ accession, peptide identifiers will be displayed at this layer.
 An idXML consist of a peptide identification object and a protein
 identification object
 }
+\examples{
+preInferenceFilePath <-  system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
+interpretproteinidentification::generateBipartiteGraph(preInferenceFilePath, "")
+}

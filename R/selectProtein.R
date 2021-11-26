@@ -12,7 +12,7 @@
 #'   in \code{displayComponent}, selectProtein searches within this component
 #' @param vertexIdentifier is an identifier for the vertex in the graph, so what
 #'   this refers to here would be either a protein accession or peptide sequence
-#'   
+#'
 #' @return The sub-graph that include a vertex and all its neighbors
 #' @export
 selectProtein <- function(graphToSearchIn, 
