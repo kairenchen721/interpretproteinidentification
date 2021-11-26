@@ -74,8 +74,8 @@ generateBipartiteGraph <- function(preInferenceFilePath,
           
           for (peptideEvidenceNum in seq(along = peptideEvidenceVector)) {
               proteinAccession <- toString(peptideEvidenceVector
-                                           [[peptideHitNum]]$getProteinAccession())
-              peptideSequence <- toString(peptideHits[[peptideEvidenceNum]]$getSequence())
+                                           [[peptideEvidenceNum]]$getProteinAccession())
+              peptideSequence <- toString(peptideHits[[peptideHitNum]]$getSequence())
                 
               # every time an element is populated, we increase the ordinal 
               # which every element before it (not including itself) is 
