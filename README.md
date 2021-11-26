@@ -129,7 +129,8 @@ displayComponents also uses the `igraph` R package \[2\] to draw a
 component. selectProtein uses the `igraph` R package \[2\] to search for
 relevant vertices (those connected to the selected protein/peptide),
 induce a sub-graph, then plot it. The data set BSA1_OMSSA.idXML is
-obtained from the OpenMS github. \[1\]
+obtained from the OpenMS github. \[1\]. The .onload function in utlis.R
+is taken from the vignette of the reticulate package
 
 ## References
 

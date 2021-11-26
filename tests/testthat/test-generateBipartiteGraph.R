@@ -1,4 +1,5 @@
 test_that("reading into graph works", {
+  interpretproteinidentification::skipIfNoPyopenms()
   allEdges <- c(
     "SHC(Carbamidomethyl)IAEVEK",
     "P02769|ALBU_BOVIN",

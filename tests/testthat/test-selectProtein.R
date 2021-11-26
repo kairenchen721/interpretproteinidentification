@@ -1,5 +1,6 @@
 
 test_that("select protein works", {
+  interpretproteinidentification::skipIfNoPyopenms()
   myProteins <- c(
     "SHC(Carbamidomethyl)IAEVEK",
     "P02769|ALBU_BOVIN",                           
