@@ -17,7 +17,8 @@ interpretbility of protein inference
 
 The purpose of this package is to visualize the connection between
 peptide identified from mass spectrometry, and the protein that the
-peptide can map to, and and to improve interpertability of a proteome.
+peptide can map to, and to improve interpertability of a proteome.
+
 In proteomics, bottom-up proteomics is used more often, where the
 protein first undergoes protease digestion into smaller piece of protein
 known as “peptides”, it is then the peptides that the mass spectrometer
@@ -25,6 +26,7 @@ identifies. Then each peptide is determined to be part which protein
 based on sequence. This package is not trying to show a plot that
 visualizes the performance of protein inference, nor is it trying to
 visualize the connection between mass spectrometry spectra and peptides.
+
 The main reason why this is interesting is because one peptide sequence
 can map to multiple proteins sequence (because or else if one peptide
 can only map to one protein, visualization of this kind would not
@@ -36,8 +38,13 @@ inferred). In theory, cytoscape \[4\] can do this, (since it is a
 visualizer for any network), but file reading (idXML \[1\] is not an
 supported file format) and processing (having to click many thing in the
 graphical user interface, or run a few command in the command line
-interface) may be an issue. The R version is 4.0.2 and the platform used
-to develop this package is Mac.
+interface) may a slight annoyance.
+
+The reason why an idXML is not supported by cytoscape is because it is
+not a file represent a network, it is just a file represent what
+
+The R version is 4.0.2 and the platform used to develop this package is
+Mac.
 
 ## Installation
 
@@ -72,7 +79,7 @@ contains a sample idXML data. Refer to package vignettes (that will be
 here in the future) for more details.
 
 ``` r
-browseVignettes("TestingPackage")
+browseVignettes("interpretproteinidentification")
 ```
 
 The package tree structure is provided below
@@ -124,27 +131,6 @@ relevant vertices (those connected to the selected protein/peptide),
 induce a sub-graph, then plot it. The data set BSA1_OMSSA.idXML is
 obtained from the OpenMS github. \[1\]
 
-## Bugs to fix/Feature to implement
-
-1.  Examples in roxygen documentation fails (probably have to do with
-    reticulate)
-2.  test_check fails (testing in r cmd check) despite devtools::test()
-    works maybe I am not sure if it has something to do with getwd()
-3.  How do I compare edges in an igraph object?, it seems to be
-    unsupported
-4.  Get data into the package and write its documentation
-5.  Change plot to include inferred protein information
-6.  In select protein displaying protein sequence, color code peptide
-    and protein sequence, add gene ontology labels
-7.  Implemented search for annotations, maybe use match
-8.  Consider using cytoscape \[4\]
-    <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
-9.  somehow, building the vignette is killed when it reach the first
-    functions (generateBipartiteGraph), I suspect it because I am using
-    reticulate, even though i can force build it using
-    (rmarkdown::render(input = “my-vignette.Rmd”, output_format =
-    “html_document”)) (see doc for the vignette)
-
 ## References
 
 1.  Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,
@@ -185,3 +171,24 @@ obtained from the OpenMS github. \[1\]
 
 This package was developed as part of an assessment for 2021 BCB410H:
 Applied Bioinformatics, University of Toronto, Toronto, CANADA.
+
+## Bugs to fix/Feature to implement
+
+1.  Examples in roxygen documentation fails (probably have to do with
+    reticulate)
+2.  test_check fails (testing in r cmd check) despite devtools::test()
+    works maybe I am not sure if it has something to do with getwd()
+3.  How do I compare edges in an igraph object?, it seems to be
+    unsupported
+4.  Get data into the package and write its documentation
+5.  Change plot to include inferred protein information
+6.  In select protein displaying protein sequence, color code peptide
+    and protein sequence, add gene ontology labels
+7.  Implemented search for annotations, maybe use match
+8.  Consider using cytoscape \[4\]
+    <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
+9.  somehow, building the vignette is killed when it reach the first
+    functions (generateBipartiteGraph), I suspect it because I am using
+    reticulate, even though i can force build it using
+    (rmarkdown::render(input = “my-vignette.Rmd”, output_format =
+    “html_document”)) (see doc for the vignette)

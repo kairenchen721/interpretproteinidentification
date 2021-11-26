@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateBipartiteGraph.R
 \name{generateBipartiteGraph}
 \alias{generateBipartiteGraph}
-\title{makes a graph based on peptide and protein}
+\title{Generate a Graph based on Peptide and Protein}
 \usage{
 generateBipartiteGraph(preInferenceFilePath, postInferenceFilePath)
 }
@@ -32,4 +32,6 @@ This bipartite graph consist of a set of vertices that represent proteins
 and a set of vertices that represent peptides. The edges between protein
 vertices and peptide vertices represent protein-peptide matches. protein
 accession, peptide identifiers will be displayed at this layer.
+An idXML consist of a peptide identification object and a protein
+identification object
 }

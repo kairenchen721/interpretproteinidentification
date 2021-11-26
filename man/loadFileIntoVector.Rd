@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateBipartiteGraph.R
 \name{loadFileIntoVector}
 \alias{loadFileIntoVector}
-\title{parses idXML}
+\title{Parses idXML}
 \usage{
 loadFileIntoVector(idXMLFilePath)
 }

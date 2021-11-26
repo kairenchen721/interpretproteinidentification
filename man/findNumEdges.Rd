@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateBipartiteGraph.R
 \name{findNumEdges}
 \alias{findNumEdges}
-\title{finds the number of edges in an idXML file}
+\title{Finds the Number of Edges in an idXML File}
 \usage{
 findNumEdges(peptideIdentificationObjectVector)
 }

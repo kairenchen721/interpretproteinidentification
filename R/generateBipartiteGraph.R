@@ -1,4 +1,4 @@
-#' makes a graph based on peptide and protein
+#' Generate a Graph based on Peptide and Protein
 #'
 #' \code{generateBipartiteGraph} Based on what protein mapped to peptide
 #' identified from mass spectrometry, a graph, specifically a bipartite graph, is
@@ -12,15 +12,19 @@
 #' and a set of vertices that represent peptides. The edges between protein 
 #' vertices and peptide vertices represent protein-peptide matches. protein 
 #' accession, peptide identifiers will be displayed at this layer.
+#' An idXML consist of a peptide identification object and a protein 
+#' identification object
 #'
 #' @param preInferenceFilePath The file path pointing toward the file before
 #'   protein inference it contains all possible protein, and all identified
 #'   peptides
 #' @param postInferenceFilePath The file path pointing toward the file after
 #'   protein inference it contains all identified proteins
+#'   
 #' @return It will return a graph that include all mapping of protein 
 #' to peptides
-#' @import utils
+#' @import reticulate
+#' @import igraph
 #' @export
 generateBipartiteGraph <- function(preInferenceFilePath,
                                    postInferenceFilePath){
@@ -29,12 +33,6 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   # examples/BSA/BSA1_OMSSA.idXML", "BSA1_OMSSA.idXML")
   # preInferenceFilePath <- "BSA1_OMSSA.idXML"
   
-  if (!requireNamespace("reticulate", quietly = TRUE)) {
-    utils::install.packages("reticulate")
-  }
-  if (!requireNamespace("igraph", quietly = TRUE)) {
-    utils::install.packages("igraph")
-  }
   # import python package
   ropenms <- reticulate::import("pyopenms", convert = FALSE)
   
@@ -63,13 +61,13 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   peptideProteinEdgeVector <- character(length = numPeptideProteinsEdge*2)
   
   # iterate over the peptides 
-  for (i in seq(along = peptideIdentificationObjectVector)) {
-      peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
+  for (peptideIDNum in seq(along = peptideIdentificationObjectVector)) {
+      peptideHits <- peptideIdentificationObjectVector[[peptideIDNum]]$getHits()
       
-      for (j in seq(along = peptideHits)) {
-          peptideEvidenceVector <- peptideHits[[j]]$getPeptideEvidences()
+      for (peptideHitNum in seq(along = peptideHits)) {
+          peptideEvidenceVector <- peptideHits[[peptideHitNum]]$getPeptideEvidences()
           
-          for (k in seq(along = peptideEvidenceVector)) {
+          for (peptideEvidenceNum in seq(along = peptideEvidenceVector)) {
               proteinAccession <- toString(peptideEvidenceVector
                                            [[k]]$getProteinAccession())
               peptideSequence <- toString(peptideHits[[j]]$getSequence())
@@ -96,7 +94,7 @@ generateBipartiteGraph <- function(preInferenceFilePath,
   return(peptideProteinBipartiteGraph)
 }
 
-#' parses idXML
+#' Parses idXML
 #'
 #' using the python package, pyopenms, load the idXML files into an R
 #' object
@@ -104,13 +102,11 @@ generateBipartiteGraph <- function(preInferenceFilePath,
 #' it first take convert R list to python list, load the data into the python
 #' list, then convert the R list back,
 #' @param idXMLFilePath a filepath that point to the idXML file to be parsed
+#' 
 #' @return a list consisting of 2 vectors, one that contains the protein
 #'   identification and another one that contains the peptide identification
-#' @import utils
+#' @import reticulate
 loadFileIntoVector <- function(idXMLFilePath) {
-    if (!requireNamespace("reticulate", quietly = TRUE)) {
-      utils::install.packages("reticulate")
-    }
     
     # import python package
     ropenms <- reticulate::import("pyopenms", convert = FALSE)
@@ -144,7 +140,7 @@ loadFileIntoVector <- function(idXMLFilePath) {
   return(results)
 }
 
-#' finds the number of edges in an idXML file
+#' Finds the Number of Edges in an idXML File
 #'
 #' each mapping of protein to peptide counts as one edges, this function counts
 #' that

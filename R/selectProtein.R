@@ -1,10 +1,10 @@
-#' display a protein/peptide and its neighbours
+#' Display a Protein/Peptide and Its Neighbors
 #'
 #' select a protein and all the peptide that it maps to or a peptide and all the
 #' proteins that it maps to, to display
 #'
 #' Using igraph function, It first finds the vertex object that identifier
-#' refers to, then find the neighbours of that vertex, and finally induce a
+#' refers to, then find the neighbors of that vertex, and finally induce a
 #' sub-graph that include them. You Feature yet to add: displaying protein 
 #' sequence, color code peptide and protein sequence, add gene ontology labels.
 #'
@@ -12,7 +12,8 @@
 #'   in \code{displayComponent}, selectProtein searches within this component
 #' @param vertexIdentifier is an identifier for the vertex in the graph, so what
 #'   this refers to here would be either a protein accession or peptide sequence
-#' @return The sub-graph that include a vertex and all its neighbours
+#'   
+#' @return The sub-graph that include a vertex and all its neighbors
 #' @export
 selectProtein <- function(graphToSearchIn, 
                           vertexIdentifier) {

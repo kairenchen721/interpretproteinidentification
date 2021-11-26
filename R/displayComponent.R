@@ -1,4 +1,4 @@
-#' select an component to display
+#' Select an Component to Display
 #'
 #' \code{displayComponent} given an index, display that component in the list of
 #' component

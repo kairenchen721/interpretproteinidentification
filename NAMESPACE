@@ -3,4 +3,5 @@
 export(displayComponent)
 export(generateBipartiteGraph)
 export(selectProtein)
-import(utils)
+import(igraph)
+import(reticulate)

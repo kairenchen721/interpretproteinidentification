@@ -2,7 +2,7 @@
 % Please edit documentation in R/selectProtein.R
 \name{selectProtein}
 \alias{selectProtein}
-\title{display a protein/peptide and its neighbours}
+\title{Display a Protein/Peptide and Its Neighbors}
 \usage{
 selectProtein(graphToSearchIn, vertexIdentifier)
 }
@@ -14,7 +14,7 @@ in \code{displayComponent}, selectProtein searches within this component}
 this refers to here would be either a protein accession or peptide sequence}
 }
 \value{
-The sub-graph that include a vertex and all its neighbours
+The sub-graph that include a vertex and all its neighbors
 }
 \description{
 select a protein and all the peptide that it maps to or a peptide and all the
@@ -22,7 +22,7 @@ proteins that it maps to, to display
 }
 \details{
 Using igraph function, It first finds the vertex object that identifier
-refers to, then find the neighbours of that vertex, and finally induce a
+refers to, then find the neighbors of that vertex, and finally induce a
 sub-graph that include them. You Feature yet to add: displaying protein
 sequence, color code peptide and protein sequence, add gene ontology labels.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/displayComponent.R
 \name{displayComponent}
 \alias{displayComponent}
-\title{select an component to display}
+\title{Select an Component to Display}
 \usage{
 displayComponent(proteinPeptideGraph, displayingComponent)
 }
