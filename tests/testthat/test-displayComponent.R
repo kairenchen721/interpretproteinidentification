@@ -109,7 +109,9 @@ test_that("display components works", {
   handMadeGraph <- igraph::simplify(handMadeGraph)
   handMadeGraphComponents <- igraph::decompose(handMadeGraph, mode = c("weak"))
   
-  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
+  
+  preInferenceFilePath <- system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
+  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(preInferenceFilePath, "")
   
   for (i in 1:length(handMadeGraphComponents)) {
     displayedGeneratedComponent <- interpretproteinidentification::displayComponent(generatedGraph, i)
