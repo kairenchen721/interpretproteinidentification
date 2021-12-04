@@ -2,22 +2,30 @@
 % Please edit documentation in R/generateBipartiteGraph.R
 \name{loadFileIntoVector}
 \alias{loadFileIntoVector}
-\title{Parses idXML}
+\title{Parses idXML (Does not work due to reticulate not working)}
 \usage{
-loadFileIntoVector(idXMLFilePath)
+loadFileIntoVector(preInferenceFilePath, postInferenceFilePath)
 }
 \arguments{
-\item{idXMLFilePath}{a filepath that point to the idXML file to be parsed}
+\item{preInferenceFilePath}{The file path pointing toward an idXML file
+before protein inference, it contains all possible protein, and all identified
+peptides}
+
+\item{postInferenceFilePath}{The file path pointing toward an idXML file
+after protein inference, it contains all identified/inferred proteins}
 }
 \value{
-a list consisting of 2 vectors, one that contains the protein
-identification and another one that contains the peptide identification
+a character vector where every two elements represent an edge
+in the graph
 }
 \description{
 using the python package, pyopenms, load the idXML files into an R
-object
+object then parse it to obtain what the graph needs
 }
 \details{
 it first take convert R list to python list, load the data into the python
-list, then convert the R list back,
+list, then convert the R list back, and iterate through the file to obtain a
+mapping of protein to peptides
+An idXML consist of a peptide identification object and a protein
+identification object
 }

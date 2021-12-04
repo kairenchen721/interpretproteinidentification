@@ -22,11 +22,14 @@ test_that("select protein works", {
   handMadeGraph <- igraph::make_graph(myProteins, directed = FALSE)
   handMadeGraph <- igraph::simplify(handMadeGraph)
   
+  interpretproteinidentification::install_python(version = 3.7)
+  interpretproteinidentification::install_miniconda()
+  interpretproteinidentification::installPyopenms()
+  
+  pathOne <- system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
+  
   generatedGraphComponents <- 
-    interpretproteinidentification::generateBipartiteGraph(
-      file.path(getwd(), "BSA1_OMSSA.idXML"),
-      file.path(getwd(), "BSA1_OMSSA_AFter.idXML")
-    )
+    interpretproteinidentification::generateBipartiteGraph(pathOne, "")
   component <- interpretproteinidentification::displayComponent(
     generatedGraphComponents, 1
   )

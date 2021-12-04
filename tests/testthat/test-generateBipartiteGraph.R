@@ -106,7 +106,7 @@ test_that("reading into graph works", {
   handMadeGraph <- igraph::make_graph(allEdges, directed = FALSE)
   handMadeGraph <- igraph::simplify(handMadeGraph)
 
-  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(file.path(getwd(), "BSA1_OMSSA.idXML"), file.path(getwd(), "BSA1_OMSSA_AFter.idXML"))
+  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(allEdges, "")
 
   generatedVertexNames <- igraph::V(generatedGraph)$name
   handMadeVertexName <- igraph::V(handMadeGraph)$name

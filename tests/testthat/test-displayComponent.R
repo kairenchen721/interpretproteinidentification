@@ -110,13 +110,19 @@ test_that("display components works", {
   handMadeGraph <- igraph::simplify(handMadeGraph)
   handMadeGraphComponents <- igraph::decompose(handMadeGraph, mode = c("weak"))
   
+  interpretproteinidentification::install_python(version = 3.7)
+  interpretproteinidentification::install_miniconda()
+  interpretproteinidentification::installPyopenms()
   
-  preInferenceFilePath <- system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
-  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(preInferenceFilePath, "")
+  preInferenceFilePath <- system.file("extdata", "BSA1_OMSSA.idXML", 
+                                      package = "interpretproteinidentification")
+  generatedGraph <- interpretproteinidentification::generateBipartiteGraph(
+    preInferenceFilePath, "")
   
   
   
-  displayedGeneratedComponent <- interpretproteinidentification::displayComponent(generatedGraph, 1)
+  displayedGeneratedComponent <- 
+    interpretproteinidentification::displayComponent(generatedGraph, 1)
   generatedVertexNames <- igraph::V(displayedGeneratedComponent)$name
   handMadeVertexName <- igraph::V(handMadeGraphComponents[[1]])$name
   expect_equal(generatedVertexNames, handMadeVertexName)

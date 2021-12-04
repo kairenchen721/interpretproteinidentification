@@ -4,38 +4,31 @@
 \alias{generateBipartiteGraph}
 \title{Generate a Graph based on Peptide and Protein}
 \usage{
-generateBipartiteGraph(preInferenceFilePath, postInferenceFilePath)
+generateBipartiteGraph(peptideProteinEdgeVector, inferredProteinVector)
 }
 \arguments{
-\item{preInferenceFilePath}{The file path pointing toward the file before
-protein inference it contains all possible protein, and all identified
-peptides}
+\item{peptideProteinEdgeVector}{A mapping of protein accession
+to peptide sequence in a character vector, either the odd elements are all
+proteins and the even elements are all peptide or the odd elements are all
+peptides and the even elements are all proteins. There should be an even
+number of elements}
 
-\item{postInferenceFilePath}{The file path pointing toward the file after
-protein inference it contains all identified proteins}
+\item{inferredProteinVector}{A character vector of all}
 }
 \value{
-It will return a graph that include all mapping of protein
+It will return a igraph object that include all mapping of protein
 to peptides
 }
 \description{
-\code{generateBipartiteGraph} Based on what protein mapped to peptide
-identified from mass spectrometry, a graph, specifically a bipartite graph, is
-drawn.
+Based on the protein that can be mapped to peptide which are identified from
+mass spectrometry, a bipartite graph, is drawn.
 }
 \details{
-It first uses the pyopenms package to parse the given file in idXML format,
-and iterate through the file to obtain a mapping of protein accession to
-peptide sequence, which is then used by function from the igraph package to
+It takes a mapping of protein accession to peptide sequence,
+which is then used by function from the igraph package to
 generate the graph, then decompose into weakly connected components
-This bipartite graph consist of a set of vertices that represent proteins
-and a set of vertices that represent peptides. The edges between protein
-vertices and peptide vertices represent protein-peptide matches. protein
-accession, peptide identifiers will be displayed at this layer.
-An idXML consist of a peptide identification object and a protein
-identification object
-}
-\examples{
-preInferenceFilePath <-  system.file("extdata", "BSA1_OMSSA.idXML", package = "interpretproteinidentification")
-interpretproteinidentification::generateBipartiteGraph(preInferenceFilePath, "")
+This un-directed bipartite graph consist of a set of vertices that represent
+proteins and a set of vertices that represent peptides. The edges between
+protein vertices and peptide vertices represent protein-peptide matches.
+protein accession, peptide identifiers will be displayed at this layer.
 }

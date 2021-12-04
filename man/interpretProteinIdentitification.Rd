@@ -59,3 +59,11 @@ and “after” files will be provided
 }
 }
 
+\section{Error causing roxygen tag}{
+
+I am not sure why the error appears, but once I include the 2 roxygen tag
+that calling usethis::use_rcpp() tell to add, load_all, document, clean
+and rebuild all have the same error, the error persist even if it remove the
+tags, so I am not including them here
+}
+
