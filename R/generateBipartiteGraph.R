@@ -23,11 +23,15 @@
 #' @return It will return a igraph object that include all mapping of protein 
 #' to peptides
 #' 
+#' @examples 
+#' generateBipartiteGraph(allEdges)
+#' 
 #' @import igraph
 #' 
 #' @export
 generateBipartiteGraph <- function(peptideProteinEdgeVector,
                                    inferredProteinVector){
+
 
   # check that peptideProteinEdgeVector is even
   
@@ -55,8 +59,6 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 #' peptides
 #' @param postInferenceFilePath The file path pointing toward an idXML file 
 #' after protein inference, it contains all identified/inferred proteins
-#' 
-#' @examples 
 #' 
 #' @return a character vector where every two elements represent an edge 
 #' in the graph

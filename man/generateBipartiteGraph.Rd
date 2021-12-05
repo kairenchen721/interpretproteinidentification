@@ -34,3 +34,7 @@ proteins and a set of vertices that represent peptides. The edges between
 protein vertices and peptide vertices represent protein-peptide matches.
 Protein accession, peptide identifiers will be displayed at this layer.
 }
+\examples{
+generateBipartiteGraph(allEdges)
+
+}
