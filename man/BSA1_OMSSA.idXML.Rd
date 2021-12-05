@@ -12,3 +12,6 @@ https://github.com/OpenMS/OpenMS/blob/develop/share/OpenMS/examples/BSA/BSA1_OMS
 \description{
 A set of peptide obtained mass spectrometry, mapped to protein from uniprot
 }
+\references{
+Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H., Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar, E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G., Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O. (2016). OpenMS: a flexible open-source software platform for mass spectrometry data analysis. Nature methods, 13(9), 741–748. https://doi.org/10.1038/nmeth.3959
+}

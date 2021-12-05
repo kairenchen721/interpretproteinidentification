@@ -4,7 +4,7 @@
 \alias{loadFileIntoVector}
 \title{Parses idXML (Does not work due to reticulate not working)}
 \usage{
-loadFileIntoVector(preInferenceFilePath, postInferenceFilePath)
+loadFileIntoVector(preInferenceFilePath, postInferenceFilePath, ropenms)
 }
 \arguments{
 \item{preInferenceFilePath}{The file path pointing toward an idXML file
@@ -13,6 +13,8 @@ peptides}
 
 \item{postInferenceFilePath}{The file path pointing toward an idXML file
 after protein inference, it contains all identified/inferred proteins}
+
+\item{ropenms}{thing}
 }
 \value{
 a character vector where every two elements represent an edge
@@ -28,4 +30,11 @@ list, then convert the R list back, and iterate through the file to obtain a
 mapping of protein to peptides.
 An idXML consist of a peptide identification object and a protein
 identification object
+}
+\examples{
+\dontrun{
+reticulate::conda_create("r-reticulate")
+reticulate::conda_install("r-reticulate", "pyopenms") 
+ropenms <- DIAlignR::get_ropenms(condaEnv = "r-reticulate", useConda=TRUE)
+}
 }

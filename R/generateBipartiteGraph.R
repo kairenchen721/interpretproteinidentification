@@ -59,16 +59,20 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 #' peptides
 #' @param postInferenceFilePath The file path pointing toward an idXML file 
 #' after protein inference, it contains all identified/inferred proteins
+#' @param ropenms thing
 #' 
 #' @return a character vector where every two elements represent an edge 
 #' in the graph
 #' 
+#' @examples
+#' \dontrun{
+#' reticulate::conda_create("r-reticulate")
+#' reticulate::conda_install("r-reticulate", "pyopenms") 
+#' ropenms <- DIAlignR::get_ropenms(condaEnv = "r-reticulate", useConda=TRUE)
+#' }
 #' @import reticulate
-loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath) {
-    
-    # import python package
-    ropenms <- reticulate::import("pyopenms", convert = FALSE)
-    
+loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, ropenms) {
+  
     # basically when using an python package you need to use $ instead of 
     # :: to access thing in the package
     idXML <- ropenms$IdXMLFile()

@@ -12,6 +12,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 SystemRequirements: Python (>= 2.7.0)
+biocViews: MassSpectrometry
 Depends: 
     R (>= 2.10)
 Suggests: 
@@ -22,7 +23,8 @@ Config/testthat/edition: 3
 Imports: 
     reticulate,
     igraph,
-    Rcpp
+    Rcpp,
+    DIAlignR
 VignetteBuilder: knitr
 LinkingTo: 
     Rcpp,
