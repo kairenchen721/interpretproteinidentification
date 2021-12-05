@@ -13,7 +13,9 @@ proteins and the even elements are all peptide or the odd elements are all
 peptides and the even elements are all proteins. There should be an even
 number of elements}
 
-\item{inferredProteinVector}{A character vector of all}
+\item{inferredProteinVector}{A character vector of all protein that are
+inferred (that is considered presented in the pre mass spectrometry sample)
+out of all possible proteins}
 }
 \value{
 It will return a igraph object that include all mapping of protein
@@ -26,9 +28,9 @@ mass spectrometry, a bipartite graph, is drawn.
 \details{
 It takes a mapping of protein accession to peptide sequence,
 which is then used by function from the igraph package to
-generate the graph, then decompose into weakly connected components
+generate the graph, then decompose into weakly connected components.
 This un-directed bipartite graph consist of a set of vertices that represent
 proteins and a set of vertices that represent peptides. The edges between
 protein vertices and peptide vertices represent protein-peptide matches.
-protein accession, peptide identifiers will be displayed at this layer.
+Protein accession, peptide identifiers will be displayed at this layer.
 }

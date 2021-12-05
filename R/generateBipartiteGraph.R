@@ -5,18 +5,20 @@
 #'
 #' It takes a mapping of protein accession to peptide sequence, 
 #' which is then used by function from the igraph package to
-#' generate the graph, then decompose into weakly connected components
+#' generate the graph, then decompose into weakly connected components.
 #' This un-directed bipartite graph consist of a set of vertices that represent
 #' proteins and a set of vertices that represent peptides. The edges between 
 #' protein vertices and peptide vertices represent protein-peptide matches. 
-#' protein accession, peptide identifiers will be displayed at this layer.
+#' Protein accession, peptide identifiers will be displayed at this layer.
 #'
 #' @param peptideProteinEdgeVector A mapping of protein accession 
 #' to peptide sequence in a character vector, either the odd elements are all
 #' proteins and the even elements are all peptide or the odd elements are all 
 #' peptides and the even elements are all proteins. There should be an even
 #' number of elements
-#' @param inferredProteinVector A character vector of all
+#' @param inferredProteinVector A character vector of all protein that are
+#' inferred (that is considered presented in the pre mass spectrometry sample)
+#' out of all possible proteins
 #'   
 #' @return It will return a igraph object that include all mapping of protein 
 #' to peptides
@@ -54,16 +56,20 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 #' @param postInferenceFilePath The file path pointing toward an idXML file 
 #' after protein inference, it contains all identified/inferred proteins
 #' 
+#' @examples 
+#' 
 #' @return a character vector where every two elements represent an edge 
 #' in the graph
+#' 
+#' @import reticulate
 loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath) {
     
     # import python package
-    # ropenms <- reticulate::import("pyopenms", convert = FALSE)
+    ropenms <- reticulate::import("pyopenms", convert = FALSE)
     
     # basically when using an python package you need to use $ instead of 
     # :: to access thing in the package
-    # idXML <- ropenms$IdXMLFile()
+    idXML <- ropenms$IdXMLFile()
     
     # convert r list to python list since this python package does not take 
     # R lists
@@ -116,7 +122,6 @@ loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath) {
           peptideProteinEdgeVector[ordinalElementPopulated + 1] <- 
             proteinAccession
           ordinalElementPopulated <- ordinalElementPopulated + 2
-          
         }
       }
     }
@@ -131,8 +136,10 @@ loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath) {
 #'
 #' it looks at the length of each peptideEvidenceVector which is inside of each
 #' peptidehit, which in turn is inside of each peptide identification
+#' 
 #' @param peptideIdentificationObjectVector the vector holding one or more
 #'   peptide Identification Objects
+#' 
 #' @return the number of edges
 findNumEdges <- function(peptideIdentificationObjectVector) {
     numPeptideProteinsEdge <- 0

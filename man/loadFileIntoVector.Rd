@@ -25,7 +25,7 @@ object then parse it to obtain what the graph needs
 \details{
 it first take convert R list to python list, load the data into the python
 list, then convert the R list back, and iterate through the file to obtain a
-mapping of protein to peptides
+mapping of protein to peptides.
 An idXML consist of a peptide identification object and a protein
 identification object
 }
