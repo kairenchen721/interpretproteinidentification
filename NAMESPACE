@@ -2,6 +2,8 @@
 
 export(displayComponent)
 export(generateBipartiteGraph)
+export(runinterpretproteinidentification)
 export(selectProtein)
 import(igraph)
 import(reticulate)
+importFrom(shiny,runApp)

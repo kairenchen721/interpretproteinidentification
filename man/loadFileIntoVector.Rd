@@ -33,6 +33,8 @@ identification object
 }
 \examples{
 \dontrun{
+reticulate::install_python(3.1)
+reticulate::use_python_version(3.1)
 reticulate::conda_create("r-reticulate")
 reticulate::conda_install("r-reticulate", "pyopenms") 
 ropenms <- DIAlignR::get_ropenms(condaEnv = "r-reticulate", useConda=TRUE)

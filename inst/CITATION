@@ -1,0 +1,12 @@
+citHeader("To cite interpretproteinidentification in publications use:")
+
+citEntry(
+  entry    = "Unpublished",
+  title    = "interpretproteinidentification: An Visualization R Package For Protein-Peptide Matches",
+  author   = "Kai Ren Chen",
+  note     = "Unpublished",
+  year     = "2021",
+  textVersion = paste(
+"Chen, K. (2021) interpretproteinidentification: An Visualization R Package For Protein-Peptide Matches. Unpublished. URL https://github.com/kairenchen721/interpretproteinidentification"
+  )
+)
