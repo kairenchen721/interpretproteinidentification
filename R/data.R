@@ -29,4 +29,17 @@
 #' @name BSA1_OMSSA.idXML
 NULL
 
+
+#' https://github.com/PyProphet/pyprophet/blob/master/tests/data/test_data.osw
+#'
+#' A set of peptide obtained mass spectrometry, mapped to protein from uniprot
+#'
+#' @source 
+#' https://github.com/OpenMS/OpenMS/blob/develop/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML
+#'
+#' @references Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H., Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar, E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G., Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O. (2016). OpenMS: a flexible open-source software platform for mass spectrometry data analysis. Nature methods, 13(9), 741–748. https://doi.org/10.1038/nmeth.3959
+#' @format transition PQP (see https://abibuilder.informatik.uni-tuebingen.de/archive/openms/Documentation/nightly/html/classOpenMS_1_1IdXMLFile.html)
+#' @name test_data.osw
+NULL
+
 # [END]

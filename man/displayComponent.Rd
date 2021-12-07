@@ -24,3 +24,8 @@ component
 It take the return of \code{generateBipartiteGraph} and an integer, and
 decompose the graph and uses indexing to select the graph object to display
 }
+\examples{
+wholeGraph <- generateBipartiteGraph(allEdges)
+displayComponent(wholeGraph, 1)
+
+}

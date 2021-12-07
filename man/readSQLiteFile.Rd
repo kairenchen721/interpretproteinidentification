@@ -4,9 +4,17 @@
 \alias{readSQLiteFile}
 \title{Reads and Parses an SQLite database file}
 \usage{
-readSQLiteFile(variables)
+readSQLiteFile(OSWfilepath)
+}
+\arguments{
+\item{OSWfilepath}{the file path for the OSW file}
 }
 \description{
 using RSQLite, it read an OSW file, which is database file that can be read
 using with SQLite, this will return the mapping of protein to peptides
+}
+\examples{
+dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
+readSQLiteFile(dbPath)
+
 }

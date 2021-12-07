@@ -14,6 +14,13 @@
 #'   this refers to here would be either a protein accession or peptide sequence
 #'
 #' @return The sub-graph that include a vertex and all its neighbors
+#' 
+#' @examples 
+#' wholeGraph <- generateBipartiteGraph(allEdges)
+#' oneComponent <- displayComponent(wholeGraph, 1)
+#' selectProtein(oneComponent, "P02769|ALBU_BOVIN")
+#' selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+#' 
 #' @export
 selectProtein <- function(graphToSearchIn, 
                           vertexIdentifier) {

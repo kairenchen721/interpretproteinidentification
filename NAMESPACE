@@ -2,8 +2,11 @@
 
 export(displayComponent)
 export(generateBipartiteGraph)
+export(readSQLiteFile)
 export(runinterpretproteinidentification)
 export(selectProtein)
+import(DBI)
+import(RSQLite)
 import(igraph)
 import(reticulate)
 importFrom(shiny,runApp)

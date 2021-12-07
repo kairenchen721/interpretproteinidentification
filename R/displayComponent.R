@@ -11,6 +11,10 @@
 #' @param displayingComponent an integer representing the index of the component
 #'   that the user want to display
 #' @return it returns the component that is displayed
+#' 
+#' @examples 
+#' wholeGraph <- generateBipartiteGraph(allEdges)
+#' displayComponent(wholeGraph, 1)
 #'
 #' @export
 displayComponent <- function(proteinPeptideGraph, 

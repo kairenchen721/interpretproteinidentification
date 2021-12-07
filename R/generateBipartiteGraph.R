@@ -43,15 +43,45 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
   return(peptideProteinBipartiteGraph)
 }
 
+
 #' Reads and Parses an SQLite database file
 #' 
 #' using RSQLite, it read an OSW file, which is database file that can be read
 #' using with SQLite, this will return the mapping of protein to peptides
 #' 
-#' @param 
-readSQLiteFile <- function(variables) {
+#' @param OSWfilepath the file path for the OSW file
+#' 
+#' @examples 
+#' dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
+#' readSQLiteFile(dbPath)
+#' 
+#' @import DBI
+#' @import RSQLite
+#' 
+#' @export
+readSQLiteFile <- function(OSWfilepath) {
+  con <- DBI::dbConnect(RSQLite::SQLite(), OSWfilepath)
   
+  peptideProteinMatches <- DBI::dbGetQuery(con, "SELECT UNMODIFIED_SEQUENCE, PROTEIN.PROTEIN_ACCESSION FROM PEPTIDE
+                  INNER JOIN PEPTIDE_PROTEIN_MAPPING ON PEPTIDE.ID = PEPTIDE_PROTEIN_MAPPING.PEPTIDE_ID
+                  INNER JOIN PROTEIN ON PROTEIN.ID = PEPTIDE_PROTEIN_MAPPING.PROTEIN_ID
+                  ")
+  
+  # peptideProteinMatches is a named list
+  # so I reformat it into a matrix with each named list as 1 column
+  # then I convert matrix to the character vector by row
+  
+  sqlmatrix <- matrix(data = unlist(peptideProteinMatches),
+                      nrow = length(peptideProteinMatches$UNMODIFIED_SEQUENCE),
+                      ncol = length(peptideProteinMatches))
+  
+  peptideProteinEdgeVector <- as.vector(t(sqlmatrix))
+  
+  DBI::dbDisconnect(con)
+  
+  return(peptideProteinEdgeVector)
 }
+
 
 #' Parses idXML (Does not work due to reticulate not working)
 #'

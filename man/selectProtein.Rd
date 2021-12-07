@@ -26,3 +26,10 @@ refers to, then find the neighbors of that vertex, and finally induce a
 sub-graph that include them. You Feature yet to add: displaying protein
 sequence, color code peptide and protein sequence, add gene ontology labels.
 }
+\examples{
+wholeGraph <- generateBipartiteGraph(allEdges)
+oneComponent <- displayComponent(wholeGraph, 1)
+selectProtein(oneComponent, "P02769|ALBU_BOVIN")
+selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+
+}

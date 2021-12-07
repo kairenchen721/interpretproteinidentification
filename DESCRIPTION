@@ -24,7 +24,9 @@ Imports:
     reticulate,
     igraph,
     Rcpp,
-    shiny
+    shiny,
+    DBI,
+    RSQLite
 VignetteBuilder: knitr
 LinkingTo: 
     Rcpp
