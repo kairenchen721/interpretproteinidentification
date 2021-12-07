@@ -28,3 +28,5 @@
 #' @format idXML (see https://abibuilder.informatik.uni-tuebingen.de/archive/openms/Documentation/nightly/html/classOpenMS_1_1IdXMLFile.html)
 #' @name BSA1_OMSSA.idXML
 NULL
+
+# [END]

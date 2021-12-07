@@ -54,3 +54,4 @@
 #' @name interpretProteinIdentitification
 NULL
 #> NULL
+# [END]
