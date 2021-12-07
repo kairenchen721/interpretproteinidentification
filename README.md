@@ -34,14 +34,19 @@ provide much information compare to text files), so this means that this
 package can show the what conclusion (or protein) has been drawn (or
 inferred) given the evidences (or peptide), and what other conclusion
 could have been drawn (or other protein that could possibly be
-inferred). In theory, cytoscape \[4\] can do this, (since it is a
-visualizer for any network), but file reading (idXML \[1\] is not an
-supported file format) and processing (having to click many thing in the
-graphical user interface, or run a few command in the command line
-interface) may a slight annoyance.
+inferred).
+
+In theory, cytoscape \[4\] can do this, (since it is a visualizer for
+any network), but file reading (idXML or osw \[1\] is not an supported
+file format) and processing (having to click many thing in the graphical
+user interface, or run a few command in the command line interface) may
+a slight annoyance. This package solve cytoscape’s limitation through
+its simplicity and short learning phase.
 
 The reason why an idXML is not supported by cytoscape is because it is
-not a file represent a network, it is just a file represent what
+not a file represent a network, it is just a file represent what peptide
+are identified from mass spectra and which protein has a sequence that
+also is a supersequence of those peptide’s sequence
 
 The R version is 4.0.2 and the platform used to develop this package is
 Mac.
@@ -64,8 +69,8 @@ To run the shinyApp: Under construction
 ``` r
 ls("package:interpretproteinidentification")
 #> [1] "allEdges"                          "displayComponent"                 
-#> [3] "generateBipartiteGraph"            "runinterpretproteinidentification"
-#> [5] "selectProtein"
+#> [3] "generateBipartiteGraph"            "readSQLiteFile"                   
+#> [5] "runinterpretproteinidentification" "selectProtein"
 data(package = "interpretproteinidentification")
 ```
 

@@ -1,3 +1,7 @@
+# GenerateBipartiteGraph.R
+# Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
+# Date: December 8, 2021
+
 #' Generate a Graph based on Peptide and Protein
 #'
 #' Based on the protein that can be mapped to peptide which are identified from
@@ -26,6 +30,10 @@
 #' @examples 
 #' generateBipartiteGraph(allEdges)
 #' 
+#' @references 
+#' Csardi G, Nepusz T (2006). The igraph software package for complex network
+#'  research. *InterJournal, Complex Systems,* 1695. https://igraph.org.
+#' 
 #' @import igraph
 #' 
 #' @export
@@ -44,7 +52,7 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 }
 
 
-#' Reads and Parses an SQLite database file
+#' Reads and Parses an SQLite Database File
 #' 
 #' using RSQLite, it read an OSW file, which is database file that can be read
 #' using with SQLite, this will return the mapping of protein to peptides

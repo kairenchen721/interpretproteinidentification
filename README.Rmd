@@ -35,9 +35,12 @@ The purpose of this package is to visualize the connection between peptide ident
 
 In proteomics, bottom-up proteomics is used more often, where the protein first undergoes protease digestion into smaller piece of protein known as “peptides”, it is then the peptides that the mass spectrometer identifies. Then each peptide is determined to be part which protein based on sequence. This package is not trying to show a plot that visualizes the performance of protein inference, nor is it trying to visualize the connection between mass spectrometry spectra and peptides. 
 
-The main reason why this is interesting is because one peptide sequence can map to multiple proteins sequence (because or else if one peptide can only map to one protein, visualization of this kind would not provide much information compare to text files), so this means that this package can show the what conclusion (or protein) has been drawn (or inferred) given the evidences (or peptide), and what other conclusion could have been drawn (or other protein that could possibly be inferred). In theory, cytoscape [4] can do this, (since it is a visualizer for any network), but file reading (idXML [1] is not an supported file format) and processing (having to click many thing in the graphical user interface, or run a few command in the command line interface) may a slight annoyance.
+The main reason why this is interesting is because one peptide sequence can map to multiple proteins sequence (because or else if one peptide can only map to one protein, visualization of this kind would not provide much information compare to text files), so this means that this package can show the what conclusion (or protein) has been drawn (or inferred) given the evidences (or peptide), and what other conclusion could have been drawn (or other protein that could possibly be inferred). 
 
-The reason why an idXML is not supported by cytoscape is because it is not a file represent a network, it is just a file represent what 
+In theory, cytoscape [4] can do this, (since it is a visualizer for any network), but file reading (idXML or osw [1] is not an supported file format) and processing (having to click many thing in the graphical user interface, or run a few command in the command line interface) may a slight annoyance.
+This package solve cytoscape's limitation through its simplicity and short learning phase. 
+
+The reason why an idXML is not supported by cytoscape is because it is not a file represent a network, it is just a file represent what peptide are identified from mass spectra and which protein has a sequence that also is a supersequence of those peptide's sequence
 
 The R version is 4.0.2 and the platform used to develop this package is Mac. 
 

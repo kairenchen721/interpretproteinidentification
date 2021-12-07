@@ -1,3 +1,7 @@
+# runinterpretproteinidentification
+# Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
+# Date: December 8, 2021
+
 #' Launch Shiny App for interpretproteinidentification
 #'
 #' A function that launches the Shiny app for interpretproteinidentification

@@ -1,12 +1,19 @@
+# selectProtein.R
+# Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
+# Date: December 8, 2021
+
 #' Display a Protein/Peptide and Its Neighbors
 #'
 #' select a protein and all the peptide that it maps to or a peptide and all the
-#' proteins that it maps to, to display
+#' proteins that it maps to, to display. This function expect the output of 
+#' \code{generateBipartiteGraph} and \code{displayComponent} to be its input.
 #'
 #' Using igraph function, It first finds the vertex object that identifier
 #' refers to, then find the neighbors of that vertex, and finally induce a
 #' sub-graph that include them. You Feature yet to add: displaying protein 
 #' sequence, color code peptide and protein sequence, add gene ontology labels.
+#' To display the neighbour of a protein/peptide is to know what peptide/protein
+#' can be mapped to it. 
 #'
 #' @param graphToSearchIn is the component that the user has chosen to displayed
 #'   in \code{displayComponent}, selectProtein searches within this component

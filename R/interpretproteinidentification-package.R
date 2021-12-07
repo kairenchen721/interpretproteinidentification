@@ -1,3 +1,7 @@
+# interpretproteinidentification-package.R
+# Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
+# Date: December 8, 2021
+
 #' interpretProteinIdentitification: A package for visualizing protein inference results
 #'
 #' The interpretProteinIdentitification package provides three functions:
