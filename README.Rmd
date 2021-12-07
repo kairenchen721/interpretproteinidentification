@@ -125,13 +125,9 @@ This package was developed as part of an assessment for 2021 BCB410H: Applied Bi
 
 ## Bugs to fix/Feature to implement
 1. Examples in roxygen documentation fails (probably have to do with reticulate)
-1. test_check fails (testing in r cmd check) despite devtools::test() works maybe I am not sure if it has something to do with getwd()
 1. How do I compare edges in an igraph object?, it seems to be unsupported
-1. Get data into the package and write its documentation 
 1. Change plot to include inferred protein information
 1. In select protein displaying protein sequence, color code peptide and protein sequence, add gene ontology labels
 1. Implemented search for annotations, maybe use match
 1. Consider using cytoscape [4]	http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html
-1. somehow, building the vignette is killed when it reach the first functions (generateBipartiteGraph), I suspect it because I am using reticulate, even though i can force build it using (rmarkdown::render(input = "my-vignette.Rmd", output_format = "html_document")) (see doc for the vignette) 
-
 

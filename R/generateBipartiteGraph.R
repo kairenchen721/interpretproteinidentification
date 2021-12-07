@@ -43,6 +43,16 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
   return(peptideProteinBipartiteGraph)
 }
 
+#' Reads and Parses an SQLite database file
+#' 
+#' using RSQLite, it read an OSW file, which is database file that can be read
+#' using with SQLite, this will return the mapping of protein to peptides
+#' 
+#' @param 
+readSQLiteFile <- function(variables) {
+  
+}
+
 #' Parses idXML (Does not work due to reticulate not working)
 #'
 #' using the python package, pyopenms, load the idXML files into an R

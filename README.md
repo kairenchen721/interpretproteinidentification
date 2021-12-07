@@ -63,9 +63,10 @@ To run the shinyApp: Under construction
 
 ``` r
 ls("package:interpretproteinidentification")
-#> [1] "displayComponent"       "generateBipartiteGraph" "selectProtein"
+#> [1] "allEdges"                          "displayComponent"                 
+#> [3] "generateBipartiteGraph"            "runinterpretproteinidentification"
+#> [5] "selectProtein"
 data(package = "interpretproteinidentification")
-#> no data sets found
 ```
 
 interpretproteinidentification contains 4 functions to visualize protein
@@ -177,19 +178,11 @@ Applied Bioinformatics, University of Toronto, Toronto, CANADA.
 
 1.  Examples in roxygen documentation fails (probably have to do with
     reticulate)
-2.  test_check fails (testing in r cmd check) despite devtools::test()
-    works maybe I am not sure if it has something to do with getwd()
-3.  How do I compare edges in an igraph object?, it seems to be
+2.  How do I compare edges in an igraph object?, it seems to be
     unsupported
-4.  Get data into the package and write its documentation
-5.  Change plot to include inferred protein information
-6.  In select protein displaying protein sequence, color code peptide
+3.  Change plot to include inferred protein information
+4.  In select protein displaying protein sequence, color code peptide
     and protein sequence, add gene ontology labels
-7.  Implemented search for annotations, maybe use match
-8.  Consider using cytoscape \[4\]
+5.  Implemented search for annotations, maybe use match
+6.  Consider using cytoscape \[4\]
     <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>
-9.  somehow, building the vignette is killed when it reach the first
-    functions (generateBipartiteGraph), I suspect it because I am using
-    reticulate, even though i can force build it using
-    (rmarkdown::render(input = “my-vignette.Rmd”, output_format =
-    “html_document”)) (see doc for the vignette)
