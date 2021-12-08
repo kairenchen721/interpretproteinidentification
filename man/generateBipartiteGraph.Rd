@@ -38,3 +38,7 @@ Protein accession, peptide identifiers will be displayed at this layer.
 generateBipartiteGraph(allEdges)
 
 }
+\references{
+Csardi G, Nepusz T (2006). The igraph software package for complex network
+research. \emph{InterJournal, Complex Systems,} 1695. https://igraph.org.
+}

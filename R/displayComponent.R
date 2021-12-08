@@ -33,9 +33,13 @@
 displayComponent <- function(proteinPeptideGraph, 
                              displayingComponent) {
     
+    # check that proteinPeptideGraph is a igraph graph
+    # check that displayingComponent is a number
+    
     peptideProteinGraphComponents <- igraph::decompose(proteinPeptideGraph,
                                                        mode = c("weak"))
     componentInQuestion <- peptideProteinGraphComponents[[displayingComponent]]
+    
     igraph::plot.igraph(componentInQuestion,
                         vertex.label.cex = 0.05,
                         vertex.shape = 'square',

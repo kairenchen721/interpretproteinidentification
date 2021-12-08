@@ -22,10 +22,17 @@ component
 }
 \details{
 It take the return of \code{generateBipartiteGraph} and an integer, and
-decompose the graph and uses indexing to select the graph object to display
+decompose the graph and uses indexing to select the graph object to display.
+What is display is a weakly connected component of the overall graph, the
+biological meaning is that only these vertices are relevant to the inference
+of any protein in this component.
 }
 \examples{
 wholeGraph <- generateBipartiteGraph(allEdges)
 displayComponent(wholeGraph, 1)
 
+}
+\references{
+Csardi G, Nepusz T (2006). The igraph software package for complex network
+research. \emph{InterJournal, Complex Systems,} 1695. https://igraph.org.
 }

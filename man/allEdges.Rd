@@ -3,7 +3,7 @@
 \docType{data}
 \name{allEdges}
 \alias{allEdges}
-\title{Protein peptide mappings in character vector}
+\title{Protein Peptide Mappings in Character Vector}
 \format{
 A character vector:
 \describe{
@@ -26,6 +26,12 @@ should be even
 }
 }
 \references{
-Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H., Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar, E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G., Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O. (2016). OpenMS: a flexible open-source software platform for mass spectrometry data analysis. Nature methods, 13(9), 741–748. https://doi.org/10.1038/nmeth.3959
+Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,
+Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar, E.,
+Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G.,
+Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., …
+Kohlbacher, O. (2016). OpenMS: a flexible open-source software
+platform for mass spectrometry data analysis. Nature methods, 13(9),
+741–748. https://doi.org/10.1038/nmeth.3959
 }
 \keyword{datasets}

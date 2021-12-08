@@ -127,16 +127,17 @@ The package tree structure is provided below
 
 ## Contributions
 
-The author of this package is Kai Ren Chen. The *generateBipartiteGraph*
-function make use of load function from `pyopenms` python package \[3\]
-to read idXML files, and uses `igraph` R package \[2\] to draw the
-graph, simplify the graph, and decompose the graph into components.
-displayComponents also uses the `igraph` R package \[2\] to draw a
-component. selectProtein uses the `igraph` R package \[2\] to search for
-relevant vertices (those connected to the selected protein/peptide),
-induce a sub-graph, then plot it. The data set BSA1_OMSSA.idXML is
-obtained from the OpenMS github. \[1\]. The .onload function in utlis.R
-is taken from the vignette of the reticulate package
+The author of this package is Kai Ren Chen. The function make use of
+load function from `pyopenms` python package \[3\] to read idXML files,
+through `reticulate`. \[7\] uses `DBI` \[9\] and `RSQLite` \[10\] to
+execute the SQL queries. uses `igraph` R package \[2\] to make the graph
+and simplify the graph. also uses the `igraph` R package \[2\] to
+decompose the graph into components and draw the component. uses the
+`igraph` R package \[2\] to search for relevant vertices (those
+connected to the selected protein/peptide), induce a sub-graph, then
+plot it. The data set BSA1_OMSSA.idXML is obtained from the OpenMS
+github. \[1\]. The data set test_data.osw is obtain from the pyprophet
+github. \[8\]
 
 ## References
 
@@ -173,6 +174,20 @@ is taken from the vignette of the reticulate package
 7.  Ushey, K., Allaire, JJ., and Tang, Y. (2021). reticulate: Interface
     to ‘Python’. R package version 1.22.
     <https://CRAN.R-project.org/package=reticulate>
+
+8.  Teleman, J., Röst, H. L., Rosenberger, G., Schmitt, U., Malmström,
+    L., Malmström, J., & Levander, F. (2015). DIANA–algorithmic
+    improvements for analysis of data-independent acquisition MS data.
+    Bioinformatics (Oxford, England), 31(4), 555–562.
+    <https://doi.org/10.1093/bioinformatics/btu686>
+
+9.  R Special Interest Group on Databases (R-SIG-DB), Hadley Wickham and
+    Kirill Müller (2021). DBI: R Database Interface. R package version
+    1.1.1. <https://CRAN.R-project.org/package=DBI>
+
+10. Kirill Müller, Hadley Wickham, David A. James and Seth Falcon
+    (2021). RSQLite: ‘SQLite’ Interface for R. R package version 2.2.8.
+    <https://CRAN.R-project.org/package=RSQLite>
 
 ## Acknowledgements
 

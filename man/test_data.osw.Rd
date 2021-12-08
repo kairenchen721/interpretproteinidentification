@@ -2,16 +2,22 @@
 % Please edit documentation in R/data.R
 \name{test_data.osw}
 \alias{test_data.osw}
-\title{https://github.com/PyProphet/pyprophet/blob/master/tests/data/test_data.osw}
+\title{Protein Peptide Mappings in OSW File Format}
 \format{
-transition PQP (see https://abibuilder.informatik.uni-tuebingen.de/archive/openms/Documentation/nightly/html/classOpenMS_1_1IdXMLFile.html)
+transition PQP (see https://abibuilder.informatik.uni-tuebingen.de/
+archive/openms/Documentation/release/2.6.0/html/
+classOpenMS_1_1TransitionPQPFile.html) for file format description
 }
 \source{
-https://github.com/OpenMS/OpenMS/blob/develop/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML
+https://github.com/PyProphet/pyprophet/blob/master/tests/data/test_data.osw
 }
 \description{
-A set of peptide obtained mass spectrometry, mapped to protein from uniprot
+Protein Peptide Mappings in OSW File Format
 }
 \references{
-Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H., Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar, E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G., Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O. (2016). OpenMS: a flexible open-source software platform for mass spectrometry data analysis. Nature methods, 13(9), 741–748. https://doi.org/10.1038/nmeth.3959
+Teleman, J., Röst, H. L., Rosenberger, G., Schmitt, U.,
+Malmström, L., Malmström, J., & Levander, F. (2015).
+DIANA--algorithmic improvements for analysis of data-independent acquisition
+MS data. Bioinformatics (Oxford, England), 31(4), 555–562.
+https://doi.org/10.1093/bioinformatics/btu686
 }

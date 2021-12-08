@@ -18,18 +18,27 @@ The sub-graph that include a vertex and all its neighbors
 }
 \description{
 select a protein and all the peptide that it maps to or a peptide and all the
-proteins that it maps to, to display
+proteins that it maps to, to display. This function expect the output of
+\code{generateBipartiteGraph} and \code{displayComponent} to be its input.
 }
 \details{
 Using igraph function, It first finds the vertex object that identifier
 refers to, then find the neighbors of that vertex, and finally induce a
 sub-graph that include them. You Feature yet to add: displaying protein
 sequence, color code peptide and protein sequence, add gene ontology labels.
+To display the neighbour of a protein/peptide is to know what peptide/protein
+can be mapped to it.
 }
 \examples{
 wholeGraph <- generateBipartiteGraph(allEdges)
 oneComponent <- displayComponent(wholeGraph, 1)
 selectProtein(oneComponent, "P02769|ALBU_BOVIN")
 selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+selectProtein(oneComponent, "DDSPDLPK")
+selectProtein(wholeGraph, "DDSPDLPK")
+
+#' @references 
+Csardi G, Nepusz T (2006). The igraph software package for complex network
+ research. *InterJournal, Complex Systems,* 1695. https://igraph.org.
 
 }

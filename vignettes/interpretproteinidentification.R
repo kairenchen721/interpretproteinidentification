@@ -5,6 +5,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----attach package-----------------------------------------------------------
+require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification")
 library(interpretproteinidentification)
 

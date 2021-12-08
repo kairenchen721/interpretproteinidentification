@@ -27,6 +27,12 @@
 #' oneComponent <- displayComponent(wholeGraph, 1)
 #' selectProtein(oneComponent, "P02769|ALBU_BOVIN")
 #' selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+#' selectProtein(oneComponent, "DDSPDLPK")
+#' selectProtein(wholeGraph, "DDSPDLPK")
+#' 
+#' #' @references 
+#' Csardi G, Nepusz T (2006). The igraph software package for complex network
+#'  research. *InterJournal, Complex Systems,* 1695. https://igraph.org.
 #' 
 #' @export
 selectProtein <- function(graphToSearchIn, 

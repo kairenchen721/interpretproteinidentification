@@ -2,12 +2,12 @@
 % Please edit documentation in R/generateBipartiteGraph.R
 \name{readSQLiteFile}
 \alias{readSQLiteFile}
-\title{Reads and Parses an SQLite database file}
+\title{Reads and Parses an SQLite Database File}
 \usage{
-readSQLiteFile(OSWfilepath)
+readSQLiteFile(OSWFilePath)
 }
 \arguments{
-\item{OSWfilepath}{the file path for the OSW file}
+\item{OSWFilePath}{the file path for the OSW file}
 }
 \description{
 using RSQLite, it read an OSW file, which is database file that can be read
@@ -17,4 +17,13 @@ using with SQLite, this will return the mapping of protein to peptides
 dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
 readSQLiteFile(dbPath)
 
+}
+\references{
+R Special Interest Group on Databases (R-SIG-DB), Hadley Wickham
+and Kirill Müller (2021). DBI: R Database Interface. R package version
+1.1.1. https://CRAN.R-project.org/package=DBI
+
+Kirill Müller, Hadley Wickham, David A. James and Seth Falcon (2021).
+RSQLite: 'SQLite' Interface for R. R package version 2.2.8.
+https://CRAN.R-project.org/package=RSQLite
 }

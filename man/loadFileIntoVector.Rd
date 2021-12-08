@@ -39,4 +39,14 @@ reticulate::conda_create("r-reticulate")
 reticulate::conda_install("r-reticulate", "pyopenms") 
 ropenms <- DIAlignR::get_ropenms(condaEnv = "r-reticulate", useConda=TRUE)
 }
+
+}
+\references{
+Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,
+Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar,
+E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G.,
+Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O.
+(2016). OpenMS: a flexible open-source software platform for mass
+spectrometry data analysis. \emph{Nature methods, 13}(9), 741–748.
+https://doi.org/10.1038/nmeth.3959
 }

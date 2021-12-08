@@ -42,6 +42,7 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 
 
   # check that peptideProteinEdgeVector is even
+  # check that peptideProteinEdgeVector is a character vector
   
   peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector,
                                                      directed = FALSE)
@@ -57,7 +58,7 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 #' using RSQLite, it read an OSW file, which is database file that can be read
 #' using with SQLite, this will return the mapping of protein to peptides
 #' 
-#' @param OSWfilepath the file path for the OSW file
+#' @param OSWFilePath the file path for the OSW file
 #' 
 #' @examples 
 #' dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
@@ -66,9 +67,17 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 #' @import DBI
 #' @import RSQLite
 #' 
+#' @references R Special Interest Group on Databases (R-SIG-DB), Hadley Wickham
+#'  and Kirill Müller (2021). DBI: R Database Interface. R package version 
+#'  1.1.1. https://CRAN.R-project.org/package=DBI
+#' 
+#' Kirill Müller, Hadley Wickham, David A. James and Seth Falcon (2021). 
+#' RSQLite: 'SQLite' Interface for R. R package version 2.2.8. 
+#' https://CRAN.R-project.org/package=RSQLite
+#' 
 #' @export
-readSQLiteFile <- function(OSWfilepath) {
-  con <- DBI::dbConnect(RSQLite::SQLite(), OSWfilepath)
+readSQLiteFile <- function(OSWFilePath) {
+  con <- DBI::dbConnect(RSQLite::SQLite(), OSWFilePath)
   
   peptideProteinMatches <- DBI::dbGetQuery(con, "SELECT UNMODIFIED_SEQUENCE, PROTEIN.PROTEIN_ACCESSION FROM PEPTIDE
                   INNER JOIN PEPTIDE_PROTEIN_MAPPING ON PEPTIDE.ID = PEPTIDE_PROTEIN_MAPPING.PEPTIDE_ID
@@ -120,7 +129,15 @@ readSQLiteFile <- function(OSWfilepath) {
 #' reticulate::conda_install("r-reticulate", "pyopenms") 
 #' ropenms <- DIAlignR::get_ropenms(condaEnv = "r-reticulate", useConda=TRUE)
 #' }
-#' @import reticulate
+#' 
+#' @references 
+#' Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,
+#'  Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar,
+#'  E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G.,
+#'  Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O.
+#'  (2016). OpenMS: a flexible open-source software platform for mass 
+#'  spectrometry data analysis. *Nature methods, 13*(9), 741–748. 
+#'  https://doi.org/10.1038/nmeth.3959 
 loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, ropenms) {
   
     # basically when using an python package you need to use $ instead of 
@@ -195,6 +212,15 @@ loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, rope
 #' 
 #' @param peptideIdentificationObjectVector the vector holding one or more
 #'   peptide Identification Objects
+#' 
+#' @references 
+#' Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,
+#'  Aicheler, F., Andreotti, S., Ehrlich, H. C., Gutenbrunner, P., Kenar,
+#'  E., Liang, X., Nahnsen, S., Nilse, L., Pfeuffer, J., Rosenberger, G.,
+#'  Rurik, M., Schmitt, U., Veit, J., Walzer, M., Wojnar, D., … Kohlbacher, O.
+#'  (2016). OpenMS: a flexible open-source software platform for mass 
+#'  spectrometry data analysis. *Nature methods, 13*(9), 741–748. 
+#'  https://doi.org/10.1038/nmeth.3959 
 #' 
 #' @return the number of edges
 findNumEdges <- function(peptideIdentificationObjectVector) {
