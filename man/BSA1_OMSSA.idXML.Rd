@@ -11,7 +11,7 @@ openms/Documentation/nightly/html/classOpenMS_1_1IdXMLFile.html)
 https://github.com/OpenMS/OpenMS/blob/develop/share/OpenMS/examples/BSA/BSA1_OMSSA.idXML
 }
 \description{
-A set of peptide obtained mass spectrometry, mapped to protein from uniprot
+A set of peptides obtained mass spectrometry, mapped to proteins from uniprot.
 }
 \references{
 Röst, H. L., Sachsenberg, T., Aiche, S., Bielow, C., Weisser, H.,

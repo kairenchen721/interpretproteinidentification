@@ -30,23 +30,40 @@
 #' selectProtein(oneComponent, "DDSPDLPK")
 #' selectProtein(wholeGraph, "DDSPDLPK")
 #' 
-#' #' @references 
+#' @references 
 #' Csardi G, Nepusz T (2006). The igraph software package for complex network
 #'  research. *InterJournal, Complex Systems,* 1695. https://igraph.org.
+#'  
+#' @import igraph
 #' 
 #' @export
 selectProtein <- function(graphToSearchIn, 
                           vertexIdentifier) {
   
-    # potential examples
-    # proteinSubgraph <- selectProtein(componentWanted, "P02769|ALBU_BOVIN")
-    # proteinSubgraph <- selectProtein(componentWanted, "DDSPDLPK")
+    # check the graphToSearchIn is an igraph object
+    if (!igraph::is_igraph(graph = graphToSearchIn)) {
+      stop("graphToSearchIn is expected to be an igraph object, use the output from
+           either generateBiparate or displayComponent")
+    } else {
+      ; # does nothing (explicit inactive else case as per coding style)
+    }
     
     # since igraph uses vertex id, we find that first
-    vertexID <- match(vertexIdentifier, igraph::V(graphToSearchIn)$name)
+    vertexID <- match(
+      vertexIdentifier,
+      igraph::V(graphToSearchIn)$name,
+      nomatch = 0)
+    
+    if (vertexID == 0) {
+      stop("this vertexIdentifier is not in this graph")
+    } else {
+      ; # does nothing (explicit inactive else case as per coding style)
+    }
     
     # find all adjacent vertices, using vertex id
-    vertexObjectVector <- igraph::neighbors(graphToSearchIn, vertexID)
+    vertexObjectVector <- igraph::neighbors(
+      graph = graphToSearchIn,
+      v = vertexID)
     
     vertexIDVector <- numeric(length = length(vertexObjectVector))
     for (i in seq(along = vertexObjectVector)) {
@@ -56,17 +73,19 @@ selectProtein <- function(graphToSearchIn,
     }
     
     vertexIDVector <- c(vertexIDVector, vertexID)
-    # i can make a subgraph, if i know the vertex ids
-    proteinAndItsPeptides <- igraph::induced_subgraph(graphToSearchIn, 
-                                                      vertexIDVector)
+    # make a subgraph, from vertex ids
+    proteinAndItsPeptides <- igraph::induced_subgraph(
+      graph = graphToSearchIn,
+      vids = vertexIDVector)
     
     # TODO: better plot  ####
-    igraph::plot.igraph(proteinAndItsPeptides,
-                        vertex.label.cex = 0.05,
-                        vertex.shape = 'square',
-                        vertex.frame.color = NA,
-                        vertex.size = 20,
-                        vertex.color = 'SkyBlue2')
+    igraph::plot.igraph(
+      x = proteinAndItsPeptides,
+      vertex.label.cex = 0.05,
+      vertex.shape = 'square',
+      vertex.frame.color = NA,
+      vertex.size = 20,
+      vertex.color = 'SkyBlue2')
     
     # TODO: displaying protein sequence, color code peptide 
     # and protein sequence, add gene ontology labels.####

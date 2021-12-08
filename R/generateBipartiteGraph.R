@@ -42,7 +42,19 @@ generateBipartiteGraph <- function(peptideProteinEdgeVector,
 
 
   # check that peptideProteinEdgeVector is even
+  if (!length(peptideProteinEdgeVector) %% 2 == 0) {
+    stop("an peptideProteinEdgeVector with even length is expected")
+  } else {
+    ; # does nothing (explicit inactive else case as per coding style)
+  }
+  
   # check that peptideProteinEdgeVector is a character vector
+  if (!typeof(peptideProteinEdgeVector) == "character") {
+    stop("an peptideProteinEdgeVector with character elements is expected")
+  } else {
+    ;  # does nothing (explicit inactive else case as per coding style)
+  }
+  
   
   peptideProteinBipartiteGraph <- igraph::make_graph(peptideProteinEdgeVector,
                                                      directed = FALSE)
@@ -116,7 +128,7 @@ readSQLiteFile <- function(OSWFilePath) {
 #' peptides
 #' @param postInferenceFilePath The file path pointing toward an idXML file 
 #' after protein inference, it contains all identified/inferred proteins
-#' @param ropenms thing
+#' @param ropenms a variable containing the reference to the package "ropenms"
 #' 
 #' @return a character vector where every two elements represent an edge 
 #' in the graph
@@ -138,69 +150,69 @@ readSQLiteFile <- function(OSWFilePath) {
 #'  (2016). OpenMS: a flexible open-source software platform for mass 
 #'  spectrometry data analysis. *Nature methods, 13*(9), 741–748. 
 #'  https://doi.org/10.1038/nmeth.3959 
-loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, ropenms) {
-  
-    # basically when using an python package you need to use $ instead of 
-    # :: to access thing in the package
-    idXML <- ropenms$IdXMLFile()
-    
-    # convert r list to python list since this python package does not take 
-    # R lists
-    proteinIdentificationObjectVector <- reticulate::r_to_py(list())
-    peptideIdentificationObjectVector <- reticulate::r_to_py(list())
-    
-    # print(paste0("start to load file into python object"))
-    # load to the package into the converted lists
-    idXML$load(preInferenceFilePath, proteinIdentificationObjectVector, 
-               peptideIdentificationObjectVector)
-    # print(paste0("file loaded into python object, now converting python object
-    # to R object, this will take sometime"))
-    
-    # then convert the python list back to r object, since R cannot use python objects
-    proteinIdentificationObjectVector <- reticulate::py_to_r(
-      proteinIdentificationObjectVector)
-    peptideIdentificationObjectVector <- reticulate::py_to_r(
-      peptideIdentificationObjectVector)
-    # print(paste0("python object convert to R object"))
-    
-    
-    #find out how many edges there are to pre-allocate vector size
-    numPeptideProteinsEdge <- findNumEdges(peptideIdentificationObjectVector)
-    # print(paste0("number of edges found"))
-    
-    # so every row before this ordinal is populated
-    # it starts at 1 (meaning that the 0th row is population) there is no 0th 
-    # row so, no row is populated
-    ordinalElementPopulated <- 1
-    peptideProteinEdgeVector <- character(length = numPeptideProteinsEdge*2)
-    
-    # iterate over the peptides 
-    for (peptideIDNum in seq(along = peptideIdentificationObjectVector)) {
-      peptideHits <- peptideIdentificationObjectVector[[peptideIDNum]]$getHits()
-      
-      for (peptideHitNum in seq(along = peptideHits)) {
-        peptideEvidenceVector <- peptideHits[[peptideHitNum]]$getPeptideEvidences()
-        
-        for (peptideEvidenceNum in seq(along = peptideEvidenceVector)) {
-          proteinAccession <- toString(peptideEvidenceVector
-                                       [[peptideEvidenceNum]]$getProteinAccession())
-          peptideSequence <- toString(peptideHits[[peptideHitNum]]$getSequence())
-          
-          # every time an element is populated, we increase the ordinal 
-          # which every element before it (not including itself) is 
-          # populated. e.g. if the ordinal is 5, that means every element 
-          # before the 5th element, (the 1st, 2nd, 3rd, 4th element) is 
-          # populated 
-          peptideProteinEdgeVector[ordinalElementPopulated] <- peptideSequence
-          peptideProteinEdgeVector[ordinalElementPopulated + 1] <- 
-            proteinAccession
-          ordinalElementPopulated <- ordinalElementPopulated + 2
-        }
-      }
-    }
-  
-  return(peptideProteinEdgeVector)
-}
+# loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, ropenms) {
+#   
+#     # basically when using an python package you need to use $ instead of 
+#     # :: to access thing in the package
+#     idXML <- ropenms$IdXMLFile()
+#     
+#     # convert r list to python list since this python package does not take 
+#     # R lists
+#     proteinIdentificationObjectVector <- reticulate::r_to_py(list())
+#     peptideIdentificationObjectVector <- reticulate::r_to_py(list())
+#     
+#     # print(paste0("start to load file into python object"))
+#     # load to the package into the converted lists
+#     idXML$load(preInferenceFilePath, proteinIdentificationObjectVector, 
+#                peptideIdentificationObjectVector)
+#     # print(paste0("file loaded into python object, now converting python object
+#     # to R object, this will take sometime"))
+#     
+#     # then convert the python list back to r object, since R cannot use python objects
+#     proteinIdentificationObjectVector <- reticulate::py_to_r(
+#       proteinIdentificationObjectVector)
+#     peptideIdentificationObjectVector <- reticulate::py_to_r(
+#       peptideIdentificationObjectVector)
+#     # print(paste0("python object convert to R object"))
+#     
+#     
+#     #find out how many edges there are to pre-allocate vector size
+#     numPeptideProteinsEdge <- findNumEdges(peptideIdentificationObjectVector)
+#     # print(paste0("number of edges found"))
+#     
+#     # so every row before this ordinal is populated
+#     # it starts at 1 (meaning that the 0th row is population) there is no 0th 
+#     # row so, no row is populated
+#     ordinalElementPopulated <- 1
+#     peptideProteinEdgeVector <- character(length = numPeptideProteinsEdge*2)
+#     
+#     # iterate over the peptides 
+#     for (peptideIDNum in seq(along = peptideIdentificationObjectVector)) {
+#       peptideHits <- peptideIdentificationObjectVector[[peptideIDNum]]$getHits()
+#       
+#       for (peptideHitNum in seq(along = peptideHits)) {
+#         peptideEvidenceVector <- peptideHits[[peptideHitNum]]$getPeptideEvidences()
+#         
+#         for (peptideEvidenceNum in seq(along = peptideEvidenceVector)) {
+#           proteinAccession <- toString(peptideEvidenceVector
+#                                        [[peptideEvidenceNum]]$getProteinAccession())
+#           peptideSequence <- toString(peptideHits[[peptideHitNum]]$getSequence())
+#           
+#           # every time an element is populated, we increase the ordinal 
+#           # which every element before it (not including itself) is 
+#           # populated. e.g. if the ordinal is 5, that means every element 
+#           # before the 5th element, (the 1st, 2nd, 3rd, 4th element) is 
+#           # populated 
+#           peptideProteinEdgeVector[ordinalElementPopulated] <- peptideSequence
+#           peptideProteinEdgeVector[ordinalElementPopulated + 1] <- 
+#             proteinAccession
+#           ordinalElementPopulated <- ordinalElementPopulated + 2
+#         }
+#       }
+#     }
+#   
+#   return(peptideProteinEdgeVector)
+# }
 
 #' Finds the Number of Edges in an idXML File
 #'
@@ -223,19 +235,19 @@ loadFileIntoVector <- function(preInferenceFilePath, postInferenceFilePath, rope
 #'  https://doi.org/10.1038/nmeth.3959 
 #' 
 #' @return the number of edges
-findNumEdges <- function(peptideIdentificationObjectVector) {
-    numPeptideProteinsEdge <- 0
-    for (i in seq(along = peptideIdentificationObjectVector)) {
-        peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
-        
-        for (i in seq(along = peptideHits)) {
-            peptideEvidenceVector <- peptideHits[[i]]$getPeptideEvidences()
-            numPeptideProteinsEdge <- numPeptideProteinsEdge + length(
-              peptideEvidenceVector)
-            # print(c("numPeptideProteinsEdge", numPeptideProteinsEdge))
-        }
-    }
-    return(numPeptideProteinsEdge)
-}
+# findNumEdges <- function(peptideIdentificationObjectVector) {
+#     numPeptideProteinsEdge <- 0
+#     for (i in seq(along = peptideIdentificationObjectVector)) {
+#         peptideHits <- peptideIdentificationObjectVector[[i]]$getHits()
+#         
+#         for (i in seq(along = peptideHits)) {
+#             peptideEvidenceVector <- peptideHits[[i]]$getPeptideEvidences()
+#             numPeptideProteinsEdge <- numPeptideProteinsEdge + length(
+#               peptideEvidenceVector)
+#             # print(c("numPeptideProteinsEdge", numPeptideProteinsEdge))
+#         }
+#     }
+#     return(numPeptideProteinsEdge)
+# }
 
 # [END]

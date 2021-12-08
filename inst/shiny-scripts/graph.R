@@ -1,3 +1,7 @@
+# GenerateBipartiteGraph.R
+# Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
+# Date: December 8, 2021
+
 library(shiny)
 options(shiny.maxRequestSize = 30*1024^2)
 

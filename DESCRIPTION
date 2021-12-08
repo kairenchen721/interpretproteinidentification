@@ -23,5 +23,8 @@ Imports:
     igraph,
     shiny,
     DBI,
-    RSQLite
+    RSQLite,
+    Rcpp
 VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp

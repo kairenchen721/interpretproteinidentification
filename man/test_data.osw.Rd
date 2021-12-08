@@ -12,7 +12,10 @@ classOpenMS_1_1TransitionPQPFile.html) for file format description
 https://github.com/PyProphet/pyprophet/blob/master/tests/data/test_data.osw
 }
 \description{
-Protein Peptide Mappings in OSW File Format
+This is just a sample file, all of its components only have 1 protein, this
+means that all peptide map to one protein only. And thus the inferred
+proteins is simply just all the proteins. Also these protein are not real
+proteins (their "accession" does not correspond to an uniprot entry)
 }
 \references{
 Teleman, J., Röst, H. L., Rosenberger, G., Schmitt, U.,

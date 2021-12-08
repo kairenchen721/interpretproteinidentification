@@ -34,10 +34,24 @@ displayComponent <- function(proteinPeptideGraph,
                              displayingComponent) {
     
     # check that proteinPeptideGraph is a igraph graph
-    # check that displayingComponent is a number
+    # check the graphToSearchIn is an igraph object
+    if (!igraph::is_igraph(graph = proteinPeptideGraph)) {
+        stop("proteinPeptideGraph is expected to be an igraph object,
+             use the output from generateBiparate")
+    } else {
+        ; # does nothing (explicit inactive else case as per coding style)
+    }
     
     peptideProteinGraphComponents <- igraph::decompose(proteinPeptideGraph,
                                                        mode = c("weak"))
+    
+    # check that displayingComponent is a number
+    if (displayingComponent > length | displayComponent < 1 ) {
+        stop("displayingComponent is out of bounds")
+    } else {
+        ; # does nothing (explicit inactive else case as per coding style)
+    }
+    
     componentInQuestion <- peptideProteinGraphComponents[[displayingComponent]]
     
     igraph::plot.igraph(componentInQuestion,
@@ -47,7 +61,6 @@ displayComponent <- function(proteinPeptideGraph,
                         vertex.size = 20,
                         vertex.color = 'SkyBlue2')
     
-    # add check for user input that exceed the indices of the given list
     return(componentInQuestion)
 }
 
