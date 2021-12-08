@@ -62,7 +62,11 @@ devtools::install_github("kairenchen721/interpretproteinidentification", build_v
 library("interpretproteinidentification")
 ```
 
-To run the shinyApp: Under construction
+To run the shinyApp:
+
+``` r
+runinterpretproteinidentification()
+```
 
 ## Overview
 
@@ -75,14 +79,15 @@ data(package = "interpretproteinidentification")
 ```
 
 interpretproteinidentification contains 4 functions to visualize protein
-inference. The generateBipartiteGraph function generate the graph. The
-displayComponent allows the user to choose a component of the graph to
-display. selectProtein is a function that draw a sub-graph consisting of
-the selected protein/peptide and all its adjacent vertices. The
-runinterpretproteinidentification is the function that launches the
-shiny app for this package. (not yet implemented) The package also
-contains a sample idXML data. Refer to package vignettes (that will be
-here in the future) for more details.
+inference. The readSQLiteFil} read the osw file and make a character
+vector representing the edges of a graph. The generateBipartiteGraph
+function generate the graph. The displayComponent allows the user to
+choose a component of the graph to display. selectProtein is a function
+that draw a sub-graph consisting of the selected protein/peptide and all
+its adjacent vertices. The runinterpretproteinidentification is the
+function that launches the shiny app for this package. The package also
+contains a sample idXML and osw data in inst/extdata Refer to package
+vignettes for more details.
 
 ``` r
 browseVignettes("interpretproteinidentification")
@@ -196,13 +201,10 @@ Applied Bioinformatics, University of Toronto, Toronto, CANADA.
 
 ## Bugs to fix/Feature to implement
 
-1.  Examples in roxygen documentation fails (probably have to do with
-    reticulate)
-2.  How do I compare edges in an igraph object?, it seems to be
+1.  How do I compare edges in an igraph object?, it seems to be
     unsupported
-3.  Change plot to include inferred protein information
-4.  In select protein displaying protein sequence, color code peptide
-    and protein sequence, add gene ontology labels
-5.  Implemented search for annotations, maybe use match
-6.  Consider using cytoscape \[4\]
+2.  Change plot to include inferred protein information
+3.  In select protein add gene ontology labels and pathology
+4.  Implemented search for annotations, maybe use match
+5.  Consider using cytoscape \[4\]
     <http://cytoscape.org/RCy3/articles/Cytoscape-and-iGraph.html>

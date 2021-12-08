@@ -87,8 +87,7 @@ selectProtein <- function(graphToSearchIn,
       vertex.size = 20,
       vertex.color = 'SkyBlue2')
     
-    # TODO: displaying protein sequence, color code peptide 
-    # and protein sequence, add gene ontology labels.####
+    # TODO:  add gene ontology labels.####
   
     return(proteinAndItsPeptides)
 }
