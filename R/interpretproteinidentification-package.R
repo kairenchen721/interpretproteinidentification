@@ -46,7 +46,7 @@
 #' which peptide’s sequence matches part of the protein sequence). 3. An 
 #' identifier for the peptides. 4. The protein that are“identified”, meaning 
 #' that they are considered present in the sample. It assumed that there are
-#' all in idXML files. Sometimes, there is a data for “before” protein inference 
+#' all in osw files. Sometimes, there is a data for “before” protein inference 
 #' and data for “after” protein inference. sometimes, the “after” may not 
 #' provide the peptides so this package will also assume that both “before”
 #' and “after” files will be provided
@@ -56,6 +56,11 @@
 #' that calling usethis::use_rcpp() tell to add, load_all, document, clean
 #' and rebuild all have the same error, the error persist even if it remove the
 #' tags, so I am not including them here
+#' 
+#' @section About Reticulate:
+#' figuring out why reticulate is not working took me so long so
+#' I did not have as much time as I would have to develop this package
+#' (It ended up not working)
 #'
 #' @docType package
 #' @name interpretProteinIdentitification
