@@ -5,12 +5,19 @@
 \alias{interpretProteinIdentitification}
 \title{interpretProteinIdentitification: A package for visualizing protein inference results}
 \description{
-The interpretProteinIdentitification package provides three functions:
-generateBipartiteGraph, displayComponent, selectProtein
+The interpretProteinIdentitification package provides foir functions:
+readSQLiteFile, generateBipartiteGraph, displayComponent, selectProtein
 }
+\section{readSQLiteFile function}{
+
+This function take an OSW file (SQL database file) and return a a mapping of
+protein accession to peptide sequence,
+}
+
 \section{generateBipartiteGraph function}{
 
-The generateBipartiteGraph function take in idXML files and make a graph
+The generateBipartiteGraph function take in a mapping of protein accession
+to peptide sequence, files and make a graph
 }
 
 \section{displayComponent function}{
