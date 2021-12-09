@@ -23,7 +23,8 @@
 #' @param vertexIdentifier is an identifier for the vertex in the graph, so what
 #'   this refers to here would be either a protein accession or peptide sequence
 #'
-#' @return The sub-graph that include a vertex and all its neighbors
+#' @return The sub-graph that include a vertex and all its neighbors, the list of
+#' gene ontology IDs, and a list of involved diseases (if there is one)
 #' 
 #' @examples 
 #' wholeGraph <- generateBipartiteGraph(allEdges)
@@ -108,7 +109,10 @@ selectProtein <- function(graphToSearchIn,
     graphics::title(main = goID, cex.main = 0.3, sub = disease, cex.sub = 0.3)
 
   
-    return(proteinAndItsPeptides)
+    myList <- list(graph = proteinAndItsPeptides,
+                   geneOntology = goID,
+                   disease = disease)
+    return(myList)
 }
 
 # [END]

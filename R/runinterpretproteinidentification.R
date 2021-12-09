@@ -1,4 +1,4 @@
-# runinterpretproteinidentification
+# runinterpretproteinidentification.R
 # Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
 # Date: December 8, 2021
 

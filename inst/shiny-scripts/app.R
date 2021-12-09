@@ -1,4 +1,4 @@
-# GenerateBipartiteGraph.R
+# app.R
 # Author: Kai Ren Chen (kairen.chen@mail.utoronto.ca)
 # Date: December 8, 2021
 
@@ -7,13 +7,15 @@ options(shiny.maxRequestSize = 30*1024^2)
 
 ui <- shiny::fluidPage(
   shiny::sidebarPanel(
+    
+    shiny::tags$p("please only use osw files.
+                  please enter a vertex name before clicking plot protein"),
+    
     shiny::fileInput(
       inputId = "file1",
       label = "upload a file",
       multiple = FALSE,
-      accept = c(".idXML",
-                 ".osw",
-                 ".rda"),
+      accept = c(".osw"),
       width = NULL,
       buttonLabel = "Browse...",
       placeholder = "No file selected"),
@@ -125,7 +127,7 @@ server <- function(input, output) {
     proteinWanted <- interpretproteinidentification::selectProtein(
       componentWanted,
       input$protein
-    )
+    )$graph
     
     igraph::plot.igraph(proteinWanted, 
                         vertex.label.cex = as.numeric(input$vertex.label.cex),
