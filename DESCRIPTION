@@ -25,7 +25,8 @@ Imports:
     DBI,
     RSQLite,
     Rcpp,
-    UniprotR
+    UniprotR,
+    graphics
 VignetteBuilder: knitr
 LinkingTo: 
     Rcpp

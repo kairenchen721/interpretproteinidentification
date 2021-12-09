@@ -39,6 +39,7 @@
 #'  
 #' @import igraph
 #' @import UniprotR
+#' @import graphics
 #' 
 #' @export
 selectProtein <- function(graphToSearchIn, 
@@ -104,7 +105,7 @@ selectProtein <- function(graphToSearchIn,
       vertex.color = 'SkyBlue2'
     )
     
-    title(main = goID, cex.main = 0.3, sub = disease, cex.sub = 0.3)
+    graphics::title(main = goID, cex.main = 0.3, sub = disease, cex.sub = 0.3)
 
   
     return(proteinAndItsPeptides)

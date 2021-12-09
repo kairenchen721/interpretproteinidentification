@@ -4,10 +4,17 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----attach package-----------------------------------------------------------
+## ----attach package, message=FALSE, warning=FALSE, error=FALSE----------------
 require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification")
 library(interpretproteinidentification)
+
+## -----------------------------------------------------------------------------
+dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
+dbProteinPeptides <- interpretproteinidentification::readSQLiteFile(dbPath)
+
+## -----------------------------------------------------------------------------
+graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(dbProteinPeptides, "")
 
 ## ----makeGraph----------------------------------------------------------------
 graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(

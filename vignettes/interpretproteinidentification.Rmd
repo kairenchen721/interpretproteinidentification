@@ -26,13 +26,25 @@ This is where this package can help, it can plot the protein and peptide relatio
 # Making the Graph
 First, we should, attach the package
 
-```{r attach package}
+```{r attach package, message=FALSE, warning=FALSE, error=FALSE}
 require("devtools")
 devtools::install_github("kairenchen721/interpretproteinidentification")
 library(interpretproteinidentification)
 ```
 
-all you need to do is to call the function and assign it
+you could either pass an OSW file in transition PQP format into readSQLiteFile,
+it returns a character vector specifying the edges of the Protein peptide graph.
+```{r}
+dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
+dbProteinPeptides <- interpretproteinidentification::readSQLiteFile(dbPath)
+```
+
+and then pass it to generateBipartiteGraph as its first input
+```{r}
+graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(dbProteinPeptides, "")
+```
+
+or you could directly use such a character vector as the first input to generateBipartiteGraph
 ```{r makeGraph}
 graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(
   interpretproteinidentification::allEdges, "")
@@ -57,15 +69,12 @@ You can do so by calling
 interpretproteinidentification::selectProtein(componentYouWantToDisplay, "P02769")
 ```
 
-And it would show a plot with the protein with the identifier that you inputted, along with its connected peptides
+And it would show a plot with the protein with the identifier that you inputted, along with its connected peptides, and it shows the gene ontology IDs on the top, additionally, if this protein is known to be involved in one or more disease, then it would show up on the bottom. 
 
 You can also select the peptide with the identifier that you inputted, along with its connected proteins
+but neither gene ontology IDs or disease involvement would show up, since peptides have neither. 
 
 ```{r selectPeptide}
 interpretproteinidentification::selectProtein(componentYouWantToDisplay, "DDSPDLPK")
 ```
-
-
-# Search based on annotationns
-feature yet to be implemented
 
