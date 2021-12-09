@@ -37,6 +37,10 @@ Protein accession, peptide identifiers will be displayed at this layer.
 \examples{
 generateBipartiteGraph(allEdges)
 
+dbPath <- system.file("extdata", "test_data.osw", package = "interpretproteinidentification")
+otherEdges <- readSQLiteFile(dbPath)
+generateBipartiteGraph(otherEdges)
+
 }
 \references{
 Csardi G, Nepusz T (2006). The igraph software package for complex network

@@ -14,7 +14,8 @@ in \code{displayComponent}, selectProtein searches within this component}
 this refers to here would be either a protein accession or peptide sequence}
 }
 \value{
-The sub-graph that include a vertex and all its neighbors
+The sub-graph that include a vertex and all its neighbors, the list of
+gene ontology IDs, and a list of involved diseases (if there is one)
 }
 \description{
 select a protein and all the peptide that it maps to or a peptide and all the
