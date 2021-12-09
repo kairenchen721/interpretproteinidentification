@@ -46,11 +46,11 @@ displayComponent <- function(proteinPeptideGraph,
                                                        mode = c("weak"))
     
     # check that displayingComponent is a number
-    if (displayingComponent > length | displayComponent < 1 ) {
-        stop("displayingComponent is out of bounds")
-    } else {
-        ; # does nothing (explicit inactive else case as per coding style)
-    }
+    # if (displayingComponent > length(peptideProteinGraphComponents) | displayingComponent < 1) {
+    #     stop("displayingComponent is out of bounds")
+    # } else {
+    #     ; # does nothing (explicit inactive else case as per coding style)
+    # }
     
     componentInQuestion <- peptideProteinGraphComponents[[displayingComponent]]
     

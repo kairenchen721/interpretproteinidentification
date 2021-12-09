@@ -18,10 +18,7 @@ ui <- shiny::fluidPage(
       buttonLabel = "Browse...",
       placeholder = "No file selected"),
     
-    # actionButton
-    shiny::actionButton(
-      inputId = "button1",
-      label = "Run"), 
+
     
     shiny::textInput(inputId = "component", label = "component", value = "1"),
     
@@ -30,13 +27,24 @@ ui <- shiny::fluidPage(
     shiny::textInput(inputId = "vertex.size", label = "size of vertex", "20"),
     shiny::textInput(inputId = "vertex.color", label = "color of vertex", "SkyBlue2"),
     
+    shiny::textInput(inputId = "protein", label = "which protein"),
+    
+    # actionButton
+    shiny::actionButton(
+      inputId = "button1",
+      label = "Extract Mathces"), 
+    
     shiny::actionButton(
       inputId = "button2",
-      label = "plot"), 
+      label = "plot component"), 
     
     shiny::actionButton(
       inputId = "button3",
-      label = "test"), 
+      label = "plot protein"), 
+    
+    # shiny::actionButton(
+    #   inputId = "button4",
+    #   label = "test"), 
   ),
   
   # Main panel for displaying outputs ----
@@ -46,25 +54,29 @@ ui <- shiny::fluidPage(
     shiny::tabsetPanel(
       type = "tabs",
       # 1st, what you will see, 2nd is what it is referred as
-      shiny::tabPanel("Plot1", shiny::plotOutput("Plot1")),
-      shiny::tabPanel("Output1", shiny::verbatimTextOutput("Output1")),
-      shiny::tabPanel("test", shiny::verbatimTextOutput("test"))
+      shiny::tabPanel("Component Plot", shiny::plotOutput("ComponentPlot")),
+      shiny::tabPanel("Matches Output", shiny::verbatimTextOutput("MatchesOutput")),
+      # shiny::tabPanel("test", shiny::verbatimTextOutput("test")),
+      shiny::tabPanel("Protein Plot", shiny::plotOutput("ProteinPlot"))
     )
   )
 )
 
 server <- function(input, output) {
-  displayVertices <- shiny::eventReactive(eventExpr = input$button1, {
+  
+  # display the protein peptide matches
+  displayMatches <- shiny::eventReactive(eventExpr = input$button1, {
     interpretproteinidentification::readSQLiteFile(
       OSWFilePath = input$file1$datapath)
   })
   
-  output$Output1 <- shiny::renderPrint({
-    if (!is.null(displayVertices)) {
-      displayVertices()
+  output$MatchesOutput <- shiny::renderPrint({
+    if (!is.null(displayMatches)) {
+      displayMatches()
     }
   })
   
+  # display a component of the protein peptide graph
   displayComponent <- shiny::eventReactive(eventExpr = input$button2, {
     peptideProteinEdgeVector <- interpretproteinidentification::readSQLiteFile(
       OSWFilePath = input$file1$datapath)
@@ -77,7 +89,6 @@ server <- function(input, output) {
     componentWanted <-
       interpretproteinidentification::displayComponent(
           wholeGraph,
-          #1
           as.integer(input$component)
         )
     
@@ -89,24 +100,56 @@ server <- function(input, output) {
                         )
   })
   
-  output$Plot1 <- shiny::renderPlot({
+  output$ComponentPlot <- shiny::renderPlot({
     if (!is.null(displayComponent)) {
       displayComponent()
     }
   })
-  
-  
-  
-  
-  testingFunction <- shiny::eventReactive(eventExpr = input$button3, {
-    input$component
+
+  # display all neighbours of a protein/peptide
+  displayVertices <- shiny::eventReactive(eventExpr = input$button3, {
+    peptideProteinEdgeVector <- interpretproteinidentification::readSQLiteFile(
+      OSWFilePath = input$file1$datapath)
+    
+    wholeGraph <-
+      interpretproteinidentification::generateBipartiteGraph(
+        peptideProteinEdgeVector = peptideProteinEdgeVector,
+        inferredProteinVector = "")
+    
+    componentWanted <-
+      interpretproteinidentification::displayComponent(
+        wholeGraph,
+        as.integer(input$component)
+      )
+    
+    proteinWanted <- interpretproteinidentification::selectProtein(
+      componentWanted,
+      input$protein
+    )
+    
+    igraph::plot.igraph(proteinWanted, 
+                        vertex.label.cex = as.numeric(input$vertex.label.cex),
+                        vertex.frame.color = NA,
+                        vertex.size = as.numeric(input$vertex.size),
+                        vertex.color = input$vertex.color)
   })
   
-  output$test <- shiny::renderPrint({
-    if (!is.null(testingFunction)) {
-      testingFunction()
+  output$ProteinPlot <- shiny::renderPlot({
+    if (!is.null(displayVertices)) {
+      displayVertices()
     }
   })
+  
+
+  # testingFunction <- shiny::eventReactive(eventExpr = input$button3, {
+  #   input$component
+  # })
+  # 
+  # output$test <- shiny::renderPrint({
+  #   if (!is.null(testingFunction)) {
+  #     testingFunction()
+  #   }
+  # })
 
 }
 

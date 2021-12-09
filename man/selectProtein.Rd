@@ -24,16 +24,19 @@ proteins that it maps to, to display. This function expect the output of
 \details{
 Using igraph function, It first finds the vertex object that identifier
 refers to, then find the neighbors of that vertex, and finally induce a
-sub-graph that include them. You Feature yet to add: displaying protein
-sequence, color code peptide and protein sequence, add gene ontology labels.
-To display the neighbour of a protein/peptide is to know what peptide/protein
-can be mapped to it.
+sub-graph that include them. When this subgraph is plotted, if the
+vertexIdentifier is a protein accession, the gene ontology IDs will be display
+at the top of the plot, if it is involve in disease then it will be displayed
+at the bottom. (if it is not, then nothing would be displayed).
+Also to display all the neighbour of a protein/peptide is to plot what
+peptide/protein can be mapped to the vertex in question from
+vertexIdentifier
 }
 \examples{
 wholeGraph <- generateBipartiteGraph(allEdges)
 oneComponent <- displayComponent(wholeGraph, 1)
-selectProtein(oneComponent, "P02769|ALBU_BOVIN")
-selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+selectProtein(oneComponent, "P02769")
+selectProtein(wholeGraph, "P02769")
 selectProtein(oneComponent, "DDSPDLPK")
 selectProtein(wholeGraph, "DDSPDLPK")
 

@@ -34,7 +34,8 @@ library(interpretproteinidentification)
 
 all you need to do is to call the function and assign it
 ```{r makeGraph}
-graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(allEdges, "")
+graphForProteinInference <- interpretproteinidentification::generateBipartiteGraph(
+  interpretproteinidentification::allEdges, "")
 ```
 note that the first file path should refer to the pre protein inference file, and the second one should refer to the post protein inference file. This function will not generate a plot
 
@@ -53,7 +54,7 @@ If you only want to look at one protein (Or one peptide only), you can also disp
 
 You can do so by calling
 ```{r selectProtein}
-interpretproteinidentification::selectProtein(componentYouWantToDisplay, "P02769|ALBU_BOVIN")
+interpretproteinidentification::selectProtein(componentYouWantToDisplay, "P02769")
 ```
 
 And it would show a plot with the protein with the identifier that you inputted, along with its connected peptides

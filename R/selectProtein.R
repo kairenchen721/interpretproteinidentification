@@ -10,10 +10,13 @@
 #'
 #' Using igraph function, It first finds the vertex object that identifier
 #' refers to, then find the neighbors of that vertex, and finally induce a
-#' sub-graph that include them. You Feature yet to add: displaying protein 
-#' sequence, color code peptide and protein sequence, add gene ontology labels.
-#' To display the neighbour of a protein/peptide is to know what peptide/protein
-#' can be mapped to it. 
+#' sub-graph that include them. When this subgraph is plotted, if the
+#' vertexIdentifier is a protein accession, the gene ontology IDs will be display
+#' at the top of the plot, if it is involve in disease then it will be displayed
+#' at the bottom. (if it is not, then nothing would be displayed).
+#' Also to display all the neighbour of a protein/peptide is to plot what 
+#' peptide/protein can be mapped to the vertex in question from 
+#' vertexIdentifier
 #'
 #' @param graphToSearchIn is the component that the user has chosen to displayed
 #'   in \code{displayComponent}, selectProtein searches within this component
@@ -25,8 +28,8 @@
 #' @examples 
 #' wholeGraph <- generateBipartiteGraph(allEdges)
 #' oneComponent <- displayComponent(wholeGraph, 1)
-#' selectProtein(oneComponent, "P02769|ALBU_BOVIN")
-#' selectProtein(wholeGraph, "P02769|ALBU_BOVIN")
+#' selectProtein(oneComponent, "P02769")
+#' selectProtein(wholeGraph, "P02769")
 #' selectProtein(oneComponent, "DDSPDLPK")
 #' selectProtein(wholeGraph, "DDSPDLPK")
 #' 
@@ -35,6 +38,7 @@
 #'  research. *InterJournal, Complex Systems,* 1695. https://igraph.org.
 #'  
 #' @import igraph
+#' @import UniprotR
 #' 
 #' @export
 selectProtein <- function(graphToSearchIn, 
@@ -52,7 +56,8 @@ selectProtein <- function(graphToSearchIn,
     vertexID <- match(
       vertexIdentifier,
       igraph::V(graphToSearchIn)$name,
-      nomatch = 0)
+      nomatch = 0
+    )
     
     if (vertexID == 0) {
       stop("this vertexIdentifier is not in this graph")
@@ -63,7 +68,8 @@ selectProtein <- function(graphToSearchIn,
     # find all adjacent vertices, using vertex id
     vertexObjectVector <- igraph::neighbors(
       graph = graphToSearchIn,
-      v = vertexID)
+      v = vertexID
+    )
     
     vertexIDVector <- numeric(length = length(vertexObjectVector))
     for (i in seq(along = vertexObjectVector)) {
@@ -78,6 +84,16 @@ selectProtein <- function(graphToSearchIn,
       graph = graphToSearchIn,
       vids = vertexIDVector)
     
+    accList <- c(vertexIdentifier)
+    
+    # find gene ontology and involvement in disease
+    gOList <- UniprotR::GetProteinGOInfo(accList)
+    goID <- gOList$Gene.ontology.IDs
+
+    # find involvement in disease
+    pathoList <- UniprotR::GetPathology_Biotech(accList)
+    disease <- pathoList$Involvement.in.disease
+    
     # TODO: better plot  ####
     igraph::plot.igraph(
       x = proteinAndItsPeptides,
@@ -85,9 +101,11 @@ selectProtein <- function(graphToSearchIn,
       vertex.shape = 'square',
       vertex.frame.color = NA,
       vertex.size = 20,
-      vertex.color = 'SkyBlue2')
+      vertex.color = 'SkyBlue2'
+    )
     
-    # TODO:  add gene ontology labels.####
+    title(main = goID, cex.main = 0.3, sub = disease, cex.sub = 0.3)
+
   
     return(proteinAndItsPeptides)
 }
