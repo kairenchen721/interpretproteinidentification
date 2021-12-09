@@ -24,7 +24,7 @@ ui <- shiny::fluidPage(
     
     shiny::textInput(inputId = "component", label = "component", value = "1"),
     
-    shiny::textInput(inputId = "vertex.label.cex", label = "label size", "0.05"),
+    shiny::textInput(inputId = "vertex.label.cex", label = "label size", "0.5"),
     shiny::textInput(inputId = "vertex.frame.color", label = "vertex's frame color", NA),
     shiny::textInput(inputId = "vertex.size", label = "size of vertex", "20"),
     shiny::textInput(inputId = "vertex.color", label = "color of vertex", "SkyBlue2"),
@@ -34,7 +34,7 @@ ui <- shiny::fluidPage(
     # actionButton
     shiny::actionButton(
       inputId = "button1",
-      label = "Extract Mathces"), 
+      label = "Extract Matches"), 
     
     shiny::actionButton(
       inputId = "button2",
@@ -98,8 +98,11 @@ server <- function(input, output) {
                         vertex.label.cex = as.numeric(input$vertex.label.cex),
                         vertex.frame.color = NA,
                         vertex.size = as.numeric(input$vertex.size),
-                        vertex.color = input$vertex.color
-                        )
+                        vertex.color = input$vertex.color,
+                        rescale = TRUE,
+                        ylim = c(-0.7,0.7),
+                        xlim = c(-0.7,0.7),
+                        asp = 1)
   })
   
   output$ComponentPlot <- shiny::renderPlot({
@@ -133,7 +136,11 @@ server <- function(input, output) {
                         vertex.label.cex = as.numeric(input$vertex.label.cex),
                         vertex.frame.color = NA,
                         vertex.size = as.numeric(input$vertex.size),
-                        vertex.color = input$vertex.color)
+                        vertex.color = input$vertex.color, 
+                        rescale = TRUE,
+                        ylim = c(-0.7,0.7),
+                        xlim = c(-0.7,0.7),
+                        asp = 1)
   })
   
   output$ProteinPlot <- shiny::renderPlot({
